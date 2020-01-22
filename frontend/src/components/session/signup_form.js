@@ -11,7 +11,9 @@ class SignupForm extends React.Component {
             handle: '',
             password: '',
             password2: '',
-            errors: {}
+            errors: {},
+            age: '',
+            address: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +40,9 @@ class SignupForm extends React.Component {
             email: this.state.email,
             handle: this.state.handle,
             password: this.state.password,
-            password2: this.state.password2
+            password2: this.state.password2,
+            age: this.state.age,
+            address: this.state.address
         };
 
         this.props.signup(user, this.props.history);
@@ -100,6 +104,26 @@ class SignupForm extends React.Component {
                                 value={this.state.password2}
                                 onChange={this.update('password2')}
                                 // placeholder="Confirm Password"
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-muted">Age</label>
+                            <input type="text"
+                                value={this.state.age}
+                                onChange={this.update('age')}
+                                // placeholder="email"
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-muted">Address</label>
+                            <input type="text"
+                                value={this.state.address}
+                                onChange={this.update('address')}
+                                // placeholder="email"
                                 className="form-control"
                             />
                         </div>
