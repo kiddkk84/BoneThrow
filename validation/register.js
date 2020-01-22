@@ -42,6 +42,10 @@ module.exports = function validateRegisterInput(data) {
         errors.password2 = 'Passwords must match';
     }
 
+    if (isNaN(data.age)) {
+        errors.age = "Age must be a number"
+    }
+
     return {
         errors,
         isValid: Object.keys(errors).length === 0
