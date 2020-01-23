@@ -8,6 +8,10 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 // import Menu from "./nav/Menu";
 
+import DogFormContainer from './dogs/dog_form_container';
+import DogsContainer from './dogs/dogs_container';
+
+
 const App = () => (
     <div>
         {/* <NavBarContainer /> */}
@@ -16,6 +20,8 @@ const App = () => (
             <Route exact path="/" component={MainPage} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute exact path="/dogs" component={DogsContainer} />
+            <ProtectedRoute exact path="/adddog" component={DogFormContainer} />
             <Redirect to="/" /> 
         </Switch>
 

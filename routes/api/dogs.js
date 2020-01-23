@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const validateTweetInput = require("../../validation/tweets")
+const validateDogInput = require("../../validation/dogs")
 const Dog = require('../../models/Dog')
 
 router.get("/test", (req, res) => {
@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
     Dog
         .find()
         .sort({ date: -1 })
-        .then(tweets => res.json(tweets))
+        .then(dogs => res.json(dogs))
         .catch(err => res.status(400).json(err));
 })
 

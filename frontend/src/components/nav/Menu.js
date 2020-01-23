@@ -24,6 +24,14 @@ const Menu = ({ history }) => (
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">Signup</Link>
             </li>
+
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history, '/dogs')} to="/dogs">See All Dogs</Link>
+            </li>
+
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history, '/adddog')} to="/adddog">Add your Dog</Link>
+            </li>
         </ul>
     </div>
 )
