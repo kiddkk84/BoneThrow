@@ -8,11 +8,18 @@ router.get("/test", (req, res) => {
     res.json({ msg: "This is the dogs route" });
 });
 
-router.get("/", (req, res) => {
+router.get("/", 
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
     Dog
         .find()
         .sort({ date: -1 })
-        .then(dogs => res.json(dogs))
+        .then(dogs => {
+            // dogs.filter()
+            // return res.send(dogs)
+            return res.json(dogs.map(dog => dog ))
+            // return res.json(dogs)
+        })
         .catch(err => res.status(400).json(err));
 })
 
@@ -38,7 +45,6 @@ router.post(
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { isValid, errors } = validateDogInput(req.body);
-
         if (!isValid) {
             return res.status(400).json(errors);
         }
@@ -55,7 +61,9 @@ router.post(
 
         newDog
             .save()
-            .then(dog => res.json(dog));
+            .then(dog => res.json(dog))
+            .catch(err => res.status(400).json(err));
+;
     }
 )
 

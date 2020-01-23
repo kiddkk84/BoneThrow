@@ -7,8 +7,8 @@ module.exports = function validateDogInput(data) {
     // const medicalArray = ["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"];
     // const personalityArray = ["Friendly", "Nervous"];
 
-    data.name = validText(data.name) ? data.name : '';
-    data.breed = breedArray.includes(data.breed) ? data.breed : '';
+    // data.name = validText(data.name) ? data.name : '';
+    // data.breed = breedArray.includes(data.breed) ? data.breed : '';
 
 
     if (!Validator.isLength(data.name, { min: 1, max: 50 })) {

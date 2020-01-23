@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import FilteredList from './breed_list_filter';
 
 class DogForm extends React.Component {
     constructor(props) {
@@ -16,6 +16,9 @@ class DogForm extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.update = this.update.bind(this)
+        this.updateDropdown = this.updateDropdown.bind(this)
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -34,22 +37,31 @@ class DogForm extends React.Component {
         };
 
         this.props.composeDog(dog);
-        this.setState({ 
-            breed: '',
-            medical: '',
-            age: '',
-            gender: '',
-            personality: '',
-            name: '',
-        })
+        // this.setState({ 
+        //     breed: '',
+        //     medical: '',
+        //     age: '',
+        //     gender: '',
+        //     personality: '',
+        //     name: '',
+        // })
     }
 
-    update() {
+  
+    update(field) {
         return e => this.setState({
-            text: e.currentTarget.value
+            [field]: e.currentTarget.value
         });
     }
 
+    updateDropdown(value){
+        console.log(value)
+        this.setState({
+            breed: value
+        })
+    }
+
+        
     render() {
         return (
             <div>
@@ -57,21 +69,46 @@ class DogForm extends React.Component {
                     <div>
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
-  </Dropdown.Toggle>
+                                Select your dog's breed
+                            </Dropdown.Toggle>
+
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                <Dropdown.Item onSelect={this.updateDropdown} eventKey={'Lab'}>Lab</Dropdown.Item>
+                                <Dropdown.Item onSelect={this.updateDropdown} eventKey={'German shepherd'}>German shepherd</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        <input type="textarea"
-                            value={this.state.breed}
-                            onChange={this.update()}
-                            placeholder="Breed..."
+                        <br/>
+                        <input type="text"
+                            value={this.state.personality}
+                            onChange={this.update('personality')}
+                            placeholder="personality..."
+                        />
+                        <input type="text"
+                            value={this.state.medical}
+                            onChange={this.update('medical')}
+                            placeholder="medical..."
+                        />
+                        <input type="text"
+                            value={this.state.age}
+                            onChange={this.update('age')}
+                            placeholder="age..."
+                        />
+                        <input type="text"
+                            value={this.state.name}
+                            onChange={this.update('name')}
+                            placeholder="Dog's name..."
+                        />
+                        <input type="text"
+                            value={this.state.gender}
+                            onChange={this.update('gender')}
+                            placeholder="dog gender..."
                         />
                         <input type="submit" value="Submit" />
+
+
+
+                        {/* <FilteredList /> */}
                     </div>
                 </form>
                 <br />
@@ -81,3 +118,4 @@ class DogForm extends React.Component {
 }
 
 export default DogForm;
+

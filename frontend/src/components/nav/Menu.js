@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { logout } from '../../actions/session_actions';
+import { STATES } from 'mongoose';
+
 
 
 const isActive = (history, path) => {
@@ -10,6 +13,10 @@ const isActive = (history, path) => {
     }
 }
 
+let style = {
+    "color": "#6626ff",
+    "fontWeight": "bold"
+} 
 const Menu = ({ history }) => (
     <div>
         <ul className="nav nav-tabs bg-primary">
@@ -17,13 +24,17 @@ const Menu = ({ history }) => (
                 <Link className="nav-link" style={isActive(history, '/')} to="/">Home</Link>
             </li>
 
-            <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, '/login')} to="/login">Login</Link>
-            </li>
+            {!window.getState().session.isAuthenticated ? 
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/login')} to="/login">Login</Link>
+                </li>
+                : null}
 
-            <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">Signup</Link>
-            </li>
+            {!window.getState().session.isAuthenticated ? 
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">Signup</Link>
+                </li>
+            : null}
 
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, '/dogs')} to="/dogs">See All Dogs</Link>
@@ -32,6 +43,14 @@ const Menu = ({ history }) => (
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, '/adddog')} to="/adddog">Add your Dog</Link>
             </li>
+            
+            { window.getState().session.isAuthenticated ? 
+            <li className="nav-item">
+                <Link onClick={()=> window.dispatch(window.logout())} style={style} className="nav-link">Logout</Link>
+            </li>
+            : null}
+            {/* <button onClick={logout}>Logout</button> */}
+
         </ul>
     </div>
 )

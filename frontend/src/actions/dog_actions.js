@@ -1,3 +1,4 @@
+
 import { getDogs, getUserDogs, writeDog } from '../util/dogs_api_util';
 
 export const RECEIVE_DOGS = "RECEIVE_DOGS";
