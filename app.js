@@ -4,6 +4,8 @@ const db = require('./config/keys').mongoURI;
 const app = express();
 const users = require("./routes/api/users")
 const tweets = require("./routes/api/tweets");
+const dogs = require("./routes/api/dogs");
+
 const User = require("./models/User");
 const bodyParser = require('body-parser'); 
 const passport = require('passport');
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users",users);
 app.use("/api/tweets", tweets);
+app.use("/api/dogs", dogs);
 // app.use("/api/category", categoryRoutes)
 
 
