@@ -12,7 +12,7 @@ const DogSchema = new Schema({
     breed: {
         type: String,
         required: true,
-        // enum: breedArray
+        enum: breedArray
     },
     medical: {
         type: [],
