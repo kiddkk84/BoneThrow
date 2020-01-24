@@ -46,7 +46,7 @@ const Menu = ({ history }) => (
             
             { window.getState().session.isAuthenticated ? 
             <li className="nav-item">
-                <Link onClick={()=> window.dispatch(window.logout())} style={style} className="nav-link">Logout</Link>
+                <Link to="/" onClick={()=> window.dispatch(window.logout())} style={style} className="nav-link">Logout</Link>
             </li>
             : null}
             {/* <button onClick={logout}>Logout</button> */}

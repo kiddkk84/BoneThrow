@@ -3,12 +3,12 @@ const validText = require('./valid-text');
 
 module.exports = function validateDogInput(data) {
     let errors = {};
-    const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Pointer", "Yorkshire Terrier", "Boxer"]
-    // const medicalArray = ["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"];
-    // const personalityArray = ["Friendly", "Nervous"];
+    const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Pointer", "Yorkshire Terrier", "Boxer"];
+    const medicalArray = ["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"];
+    const personalityArray = ["Friendly", "Nervous"];
 
-    // data.name = validText(data.name) ? data.name : '';
-    // data.breed = breedArray.includes(data.breed) ? data.breed : '';
+    data.name = validText(data.name) ? data.name : '';
+    data.breed = breedArray.includes(data.breed) ? data.breed : '';
 
 
     if (!Validator.isLength(data.name, { min: 1, max: 50 })) {
