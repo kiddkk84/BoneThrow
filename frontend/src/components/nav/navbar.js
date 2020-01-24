@@ -20,9 +20,9 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <div>
-                    <Link to={'/tweets'}>All Tweets</Link>
-                    <Link to={'/profile'}>Profile</Link>
-                    <Link to={'/new_tweet'}>Write a Tweet</Link>
+                    <Link to={'/dogs'}>My dogs</Link>
+                    <Link to={'/dogsprofile'}>Profile</Link>
+                    <Link to={'/new_dog'}>make a dog</Link>
                     <button onClick={this.logoutUser}>Logout</button>
                 </div>
             );
