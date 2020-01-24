@@ -36,4 +36,5 @@ export const composeDog = data => dispatch => (
     writeDog(data)
         .then(dog => dispatch(receiveNewDog(dog)))
         .catch(err => console.log(err))
+        
 );
