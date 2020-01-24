@@ -3,25 +3,37 @@ const router = express.Router();
 const passport = require("passport");
 const validateDogInput = require("../../validation/dogs")
 const Dog = require('../../models/Dog')
+const User = require('../../models/User')
+
 
 router.get("/test", (req, res) => {
     res.json({ msg: "This is the dogs route" });
 });
 
 router.get("/", 
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
+    
+    //find all users  (req, res) => {
+    // User.find().then(users => {
+    //     return res.json(users)
+    // })})
+
+    // (req,res) => {
+    //     // show authenticated user id to get a current user console.log(req.user._id)
+    //     return res.json('asdf')
+    // })
+
     (req, res) => {
-    Dog
+        Dog
         .find()
         .sort({ date: -1 })
         .then(dogs => {
-            // dogs.filter()
+            return res.send(dogs.filter(dog => dog.breed === "German shepherd"))
             // return res.send(dogs)
-            return res.json(dogs.map(dog => dog ))
-            // return res.json(dogs)
+            // return res.json(dogs.map(dog => dog ))
         })
         .catch(err => res.status(400).json(err));
-})
+    })
 
 router.get("/user/:user_id", (req, res) => {
     Dog
@@ -63,14 +75,15 @@ router.post(
             .save()
             .then(dog => res.json(dog))
             .catch(err => res.status(400).json(err));
-;
+
     }
 )
 
-// router.delete(
+//DELETE A DOG BY ITS DOG ID
+// router.get(
 //     "/:id", (req, res) => {
 //         Dog
-//             .findByIdAndRemove(req.params.id)
+//             .findOneAndDelete({_id: req.params.id})
 //             .then(dog => res.json(dog))
 //             .catch(err => res.status(400).json(err));
 //     })

@@ -1,5 +1,8 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Layout from "../nav/Layout";
+
 import FilteredList from './breed_list_filter';
 
 class DogForm extends React.Component {
@@ -65,6 +68,7 @@ class DogForm extends React.Component {
     render() {
         return (
             <div>
+                <Layout>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <Dropdown>
@@ -106,12 +110,30 @@ class DogForm extends React.Component {
                         />
                         <input type="submit" value="Submit" />
 
+                        <Form>
+                            {['checkbox', 'radio'].map(type => (
+                                <div key={`default-${type}`} className="mb-3">
+                                    <Form.Check
+                                        type={type}
+                                        id={`default-${type}`}
+                                        label={`default ${type}`}
+                                    />
 
+                                    <Form.Check
+                                        disabled
+                                        type={type}
+                                        label={`disabled ${type}`}
+                                        id={`disabled-default-${type}`}
+                                    />
+                                </div>
+                            ))}
+                        </Form>
 
                         {/* <FilteredList /> */}
                     </div>
                 </form>
                 <br />
+                </Layout>
             </div>
         )
     }

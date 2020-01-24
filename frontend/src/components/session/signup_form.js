@@ -128,6 +128,7 @@ class SignupForm extends React.Component {
                             />
                         </div>
 
+
                         <button className="btn btn-primary">Submit</button>
                         {/* {this.renderErrors()} */}
                   

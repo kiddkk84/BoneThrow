@@ -27,6 +27,7 @@ const UserSchema = new Schema({
         required: true,
         default: "825 Battery St"
     }
+    
 
 });
 
