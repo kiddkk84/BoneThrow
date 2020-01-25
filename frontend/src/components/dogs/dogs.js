@@ -55,7 +55,7 @@ class Dogs extends React.Component {
                         <thead>
                             <tr>
                                 <th className="text-center">
-                                Index of dogs
+                                Index of all dogs
                             </th>
                             </tr>
                         </thead>

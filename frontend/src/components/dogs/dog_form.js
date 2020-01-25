@@ -11,17 +11,16 @@ class DogForm extends React.Component {
 
         this.state = {
             breed: '',
-            medical: '',
+            medical: [],
             age: '',
             gender: '',
             personality: '',
             name: '',
-        }
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.update = this.update.bind(this)
-        this.updateDropdown = this.updateDropdown.bind(this)
-
+        this.update = this.update.bind(this);
+        this.updateDropdown = this.updateDropdown.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -52,10 +51,16 @@ class DogForm extends React.Component {
 
   
     update(field) {
-        return e => this.setState({
+        return e => {
+        
+        this.setState({
             [field]: e.currentTarget.value
         });
+        console.log(this.state)
+        }
     }
+
+
 
     updateDropdown(value){
         console.log(value)
@@ -64,72 +69,97 @@ class DogForm extends React.Component {
         })
     }
 
+    updateCheckbox(field) {
+        return e => {
+
+            if(!this.state.medical.includes(e.currentTarget.value)){
+                this.setState({
+                    medical: this.state.medical.concat([e.currentTarget.value])
+               });
+            } else {
+                let newMedical = this.state.medical.splice(this.state.medical.indexOf(e.currentTarget.value), 1);
+                this.setState({
+                    medical: newMedical
+                });
+            }
+            console.log(this.state)
+        }
+    }
         
-    render() {
+    render() { 
+
+
         return (
             <div>
                 {/* <Layout> */}
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Select your dog's breed
-                            </Dropdown.Toggle>
+                        <div>
+                            <input type="text"
+                                value={this.state.name}
+                                onChange={this.update('name')}
+                                placeholder="Dog's name..."
+                            />
+                        </div>
 
+                        <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="male" onChange={this.update('gender')} checked />
+                                    Male
+                                </label>
+                                <label className="form-check-label" >
+                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="female" onChange={this.update('gender')}/>
+                                    Female
+                                </label>
+                        </div>  
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item onSelect={this.updateDropdown} eventKey={'Lab'}>Lab</Dropdown.Item>
-                                <Dropdown.Item onSelect={this.updateDropdown} eventKey={'German shepherd'}>German shepherd</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <br/>
-                        <input type="text"
-                            value={this.state.personality}
-                            onChange={this.update('personality')}
-                            placeholder="personality..."
-                        />
-                        <input type="text"
-                            value={this.state.medical}
-                            onChange={this.update('medical')}
-                            placeholder="medical..."
-                        />
                         <input type="text"
                             value={this.state.age}
                             onChange={this.update('age')}
                             placeholder="age..."
                         />
-                        <input type="text"
-                            value={this.state.name}
-                            onChange={this.update('name')}
-                            placeholder="Dog's name..."
-                        />
-                        <input type="text"
-                            value={this.state.gender}
-                            onChange={this.update('gender')}
-                            placeholder="dog gender..."
-                        />
-                        <input type="submit" value="Submit" />
 
-                        <Form>
-                            {['checkbox', 'radio'].map(type => (
-                                <div key={`default-${type}`} className="mb-3">
-                                    <Form.Check
-                                        type={type}
-                                        id={`default-${type}`}
-                                        label={`default ${type}`}
-                                    />
+                        
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                {this.state.breed === '' ? "Select your breed"
+                                : this.state.breed} 
+                            </Dropdown.Toggle>
 
-                                    <Form.Check
-                                        disabled
-                                        type={type}
-                                        label={`disabled ${type}`}
-                                        id={`disabled-default-${type}`}
-                                    />
+
+                            <Dropdown.Menu>
+                                {["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Pointer", "Yorkshire Terrier", "Boxer"].map(
+                                    breedType => {
+                                    return <Dropdown.Item key={breedType} onSelect={this.updateDropdown} eventKey={breedType}>{breedType}</Dropdown.Item>
+                                        }
+                                    )
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <br/>
+                            
+                            
+                        <textarea 
+                                value={this.state.personality}
+                                onChange={this.update('personality')}
+                                placeholder="personality..."
+                                className="form-control" id="exampleFormControlTextarea1" rows="1">
+                        </textarea>
+
+
+                        {["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"].map( (disease, index ) => {
+                            return ( 
+                                <div key={`${disease}-${index}`} className="form-check form-check-inline">
+                                    <input className="form-check-input" type="checkbox" id={`inlineCheckbox${index}`} value={disease} onChange={this.updateCheckbox('medical')}/>
+                                    <label className="form-check-label" >{disease}</label>
                                 </div>
-                            ))}
-                        </Form>
+                            )
+                            }
+                        )}
+                                
+                        <input type="submit" className="btn btn-xxlarge btn-success" value="Add your dog" />
 
-                        {/* <FilteredList /> */}
+            
                     </div>
                 </form>
                 <br />

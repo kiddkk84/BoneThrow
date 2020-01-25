@@ -28,9 +28,9 @@ router.get("/",
         .find()
         .sort({ date: -1 })
         .then(dogs => {
-            return res.send(dogs.filter(dog => dog.breed === "German shepherd"))
+            // return res.send(dogs.filter(dog => dog.breed === "German shepherd"))
             // return res.send(dogs)
-            // return res.json(dogs.map(dog => dog ))
+            return res.json(dogs.map(dog => dog ))
         })
         .catch(err => res.status(400).json(err));
     })
