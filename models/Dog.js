@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Bulldog", "Beagle", "Poodle", "Rottweiler", "Pointer", "Yorkshire Terrier", "Boxer"]
-const medicalArray = ["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"];
+// const medicalArray = ["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"];
 const personalityArray = ["Friendly", "Nervous"];
 
 const DogSchema = new Schema({
@@ -15,9 +15,9 @@ const DogSchema = new Schema({
         enum: breedArray
     },
     medical: {
-        type: [String],
+        type: [],
         required: true,
-        enum: medicalArray
+        // enum: medicalArray
     },
     age: {
         type: Number,
@@ -31,7 +31,7 @@ const DogSchema = new Schema({
     personality: {
         type: String,
         required: true,
-        enum: personalityArray
+        // enum: personalityArray
     },
     name: {
         type: String,

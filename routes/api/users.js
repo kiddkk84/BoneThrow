@@ -7,7 +7,8 @@ const validateLoginInput = require('../../validation/login');
 const keys = require('../../config/keys');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-
+const jquery = require("jquery");
+// const { google } = require('./google')
 
 
 router.get("/test", (req, res) => {
@@ -19,6 +20,10 @@ router.get("/current", passport.authenticate('jwt', { session: false }), (req, r
     res.json({ msg: 'Success' });
 })
 
+router.get("/",  (req, res) => {
+    User.find().then(users => {
+        return res.json(users)
+    })})
 
 
 router.post('/register', (req, res) =>{
@@ -37,7 +42,9 @@ router.post('/register', (req, res) =>{
             const newUser = new User({
                 handle: req.body.handle,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                age: req.body.age,
+                address: req.body.address
             })
 
             bcrypt.genSalt(10, (err, salt)=> {
@@ -104,17 +111,38 @@ router.post('/login', (req, res)=> {
                             { expiresIn: 3600},
                             (err, token) => {
                                 res.json({
-                                    sucess: true,
+                                    success: true,
                                     token: 'Bearer ' + token 
                                 });
                             }
-                        )
+                        )           
+
                     } else {
                         errors.password = 'Incorrect password'
                         return res.status(400).json(errors);
                     }
                     
-                })
+                }).catch(err => console.log(err))
+                               
+
+
+            // console.log("YOU MADE IT IN")
+            // console.log(user)
+            // if (user.address.lat === undefined && user.address !== undefined) {
+            //     let urlAddress = user.address.split(" ").join("+").toLowerCase()
+            //     user.address = urlAddress
+            //     console.log(user.address)
+            //     jquery.ajax({
+            //         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${google}`
+            //     })
+            //     // ).then(
+            //     //     user.save(), user.save()
+            //     // ).catch(
+            //     //     err => console.log(err)
+            //     // )
+            // }         
+
+
         })
 })
 

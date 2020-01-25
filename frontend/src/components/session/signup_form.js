@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Layout from "../nav/Layout";
+// import Layout from "../layout/Layout";
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -11,7 +11,9 @@ class SignupForm extends React.Component {
             handle: '',
             password: '',
             password2: '',
-            errors: {}
+            errors: {},
+            age: '',
+            address: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +40,9 @@ class SignupForm extends React.Component {
             email: this.state.email,
             handle: this.state.handle,
             password: this.state.password,
-            password2: this.state.password2
+            password2: this.state.password2,
+            age: this.state.age,
+            address: this.state.address
         };
 
         this.props.signup(user, this.props.history);
@@ -59,9 +63,9 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div>
-                <Layout title="Signup"
+                {/* <Layout title="Signup"
                     description="Signup to Bone Throw"
-                    className="container col-md-8 offset-md-2">
+                    className="container col-md-8 offset-md-2"> */}
                 
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
@@ -104,11 +108,32 @@ class SignupForm extends React.Component {
                             />
                         </div>
 
+                        <div className="form-group">
+                            <label className="text-muted">Age</label>
+                            <input type="text"
+                                value={this.state.age}
+                                onChange={this.update('age')}
+                                // placeholder="email"
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-muted">Address</label>
+                            <input type="text"
+                                value={this.state.address}
+                                onChange={this.update('address')}
+                                // placeholder="email"
+                                className="form-control"
+                            />
+                        </div>
+
+
                         <button className="btn btn-primary">Submit</button>
                         {/* {this.renderErrors()} */}
                   
                     </form>
-                </Layout>
+                {/* </Layout> */}
             </div>
         );
     }

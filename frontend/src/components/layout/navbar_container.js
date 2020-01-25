@@ -1,6 +1,7 @@
 
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { clearCurrentProfile } from "../../actions/profile_actions";
 
 import NavBar from './navbar';
 
@@ -10,5 +11,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logout }
+    { logout, clearCurrentProfile}
 )(NavBar);

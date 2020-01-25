@@ -16,14 +16,37 @@
 
 // export default MainPage;
 
-import React from "react";
-import Layout from '../nav/Layout'
-
-const MainPage = () => (
-    <Layout title="BoneThrow" description="Bone Throw APP">
-        ...
-    </Layout>
-)
+// import React from "react";
+// import Layout from '../layout/Layout'
+// // const { google }= require('./google'); // put your key in google.js in the same file
 
 
-export default MainPage;
+// const MainPage = () => (
+//     <Layout title="BoneThrow" description="Bone Throw APP">
+//         ...
+//         {/* <button onClick={()=>getLatLong()}>Click me to get your latitude and longitude</button> */}
+//     </Layout>
+// )
+
+
+
+// const getLatLong = (address = '825 bAtterY st SANFANCISCO') => {
+//     let urlAddress = address.split(" ").join("+").toLowerCase()
+//     return window.$.ajax(
+//         {
+//             url: `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${google}`,
+//             method: `get`,
+//             success: function (data) {
+//                 console.log(data["results"][`0`].geometry.location)
+//                 window.lat = data["results"][`0`].geometry.location.lat
+//                 window.lng = data["results"][`0`].geometry.location.lng
+//             },
+//             error: function (error) {
+//                 console.log(error)
+//             },
+//         }
+//     )
+// }
+
+
+// export default MainPage;

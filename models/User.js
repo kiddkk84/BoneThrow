@@ -17,7 +17,17 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now 
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true,
+        default: "825 Battery St"
     }
+    
 
 });
 
