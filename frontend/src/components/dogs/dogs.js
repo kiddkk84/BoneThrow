@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Layout from "../nav/Layout";
+// import Layout from "../layout/Layout";
 
 class Dogs extends React.Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class Dogs extends React.Component {
             return (<div>There are no Dogs</div>)
         } else {
             return (
-                <Layout>
+                // <Layout>
                     <div>
                         <input
                             type="text"
@@ -64,7 +64,7 @@ class Dogs extends React.Component {
                         </tbody>
                     </table>
                     </div>
-                </Layout>
+                // </Layout>
 
             );
         }

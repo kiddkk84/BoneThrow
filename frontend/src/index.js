@@ -18,6 +18,7 @@ import { setAuthToken } from './util/session_api_util';
 // import { logout } from './actions/session_actions';
 
 import { signup, logout } from './actions/session_actions'
+import { clearCurrentProfile } from './actions/profile_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store;
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (decodedUser.exp < currentTime) {
             // Logout the user and redirect to the login page
             store.dispatch(logout());
+            store.dispatch(clearCurrentProfile());///////////////new
             window.location.href = '/login';
         }
     } else {

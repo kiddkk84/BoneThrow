@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Layout from "../nav/Layout";
+// import Layout from "../layout/Layout";
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -63,9 +63,9 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div>
-                <Layout title="Signup"
+                {/* <Layout title="Signup"
                     description="Signup to Bone Throw"
-                    className="container col-md-8 offset-md-2">
+                    className="container col-md-8 offset-md-2"> */}
                 
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
@@ -133,7 +133,7 @@ class SignupForm extends React.Component {
                         {/* {this.renderErrors()} */}
                   
                     </form>
-                </Layout>
+                {/* </Layout> */}
             </div>
         );
     }
