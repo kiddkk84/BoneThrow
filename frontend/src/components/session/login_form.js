@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Layout from "../nav/Layout";
+// import Layout from "../layout/Layout";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -63,11 +63,6 @@ class LoginForm extends React.Component {
         return (
             
             <div>
-                <Layout
-                    title="Login"
-                    description="Login to Bone Throw"
-                    className="container col-md-8 offset-md-2">
-                
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label className="text-muted">Email</label>
@@ -93,7 +88,7 @@ class LoginForm extends React.Component {
                         <button className="btn btn-primary">Submit</button>
                         {this.renderErrors()}
                     </form>
-                </Layout>
+                {/* </Layout> */}
             </div>
         );
     }

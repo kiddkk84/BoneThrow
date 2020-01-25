@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import Layout from "../nav/Layout";
+// import Layout from "../layout/Layout";
 
 import FilteredList from './breed_list_filter';
 
@@ -91,7 +91,7 @@ class DogForm extends React.Component {
 
         return (
             <div>
-                <Layout>
+                {/* <Layout> */}
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <div>
@@ -163,7 +163,7 @@ class DogForm extends React.Component {
                     </div>
                 </form>
                 <br />
-                </Layout>
+                {/* </Layout> */}
             </div>
         )
     }

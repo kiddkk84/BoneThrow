@@ -16,17 +16,17 @@
 
 // export default MainPage;
 
-import React from "react";
-import Layout from '../nav/Layout'
-// const { google }= require('./google'); // put your key in google.js in the same file
+// import React from "react";
+// import Layout from '../layout/Layout'
+// // const { google }= require('./google'); // put your key in google.js in the same file
 
 
-const MainPage = () => (
-    <Layout title="BoneThrow" description="Bone Throw APP">
-        ...
-        {/* <button onClick={()=>getLatLong()}>Click me to get your latitude and longitude</button> */}
-    </Layout>
-)
+// const MainPage = () => (
+//     <Layout title="BoneThrow" description="Bone Throw APP">
+//         ...
+//         {/* <button onClick={()=>getLatLong()}>Click me to get your latitude and longitude</button> */}
+//     </Layout>
+// )
 
 
 
@@ -49,4 +49,4 @@ const MainPage = () => (
 // }
 
 
-export default MainPage;
+// export default MainPage;
