@@ -49,8 +49,17 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-
-
+router.patch('/:id', function (req, res, next) {
+    Dog
+        .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } })
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.error(err);
+            next(err);
+        });
+});
 
 router.post(
     "/",

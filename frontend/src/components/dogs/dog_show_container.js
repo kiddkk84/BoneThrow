@@ -7,6 +7,7 @@ const mapStateToProps = (state, { match }) => {
     const dogId = parseInt(match.params.dogId);
     return {
         dogId,
+        dogs: Object.values(state.dogs.all)
 
     };
 };
