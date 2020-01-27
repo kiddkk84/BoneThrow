@@ -19,6 +19,13 @@ import CreateProfile from "../components/create-profile/CreateProfile";
 import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
 
+const path = require('path');
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
 
 const App = () => (
     <div>
