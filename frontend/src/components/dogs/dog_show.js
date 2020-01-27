@@ -8,7 +8,7 @@ class DogShow extends React.Component {
 
         this.state = {
             dog_name: '',
-            trip: 5,
+            trip: '',
 
         }
         this.handleSubmit = this.handleSubmit.bind(this)

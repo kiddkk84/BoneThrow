@@ -45,32 +45,37 @@ router.get("/user/:user_id", (req, res) => {
 router.get("/:id", (req, res) => {
     Dog
         .findById(req.params.id)
-        .then(dog => res.json(dog))
+        .then(dog => {
+            console.log(dog)
+            res.json(dog)
+        })
         .catch(err => res.status(400).json(err));
 })
 
 router.patch('/:id', 
         passport.authenticate("jwt", { session: false }),
-        (req, res) => { 
-        
-            // console.log({_id: req.params.id, user: req.user.id} )
-            Dog
-        // .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } }) //instead of where maybe use what router.delete does
-            // .findById(req.params.id)
-            .findOne({ _id: req.params.id, user: req.user.id })
-            .updateOne({ $push: { trips: req.body.trips } })  // user: req.user.id
-        // .findOne({ _id: req.params.id }) // HAS TO be like this updateone returns something else thats unreadable
-        // .update({ trips: ['tripslmao'] } ) 
-            .then((dog) => {
-                // console.log( Dog.findById(req.params.id))
-                console.log(dog)
-                return res.json(dog);
+        async (req, res) => { 
+            
+
+            const dog = await Dog.findOne({ _id: req.params.id, user: req.user.id })
+
+            if( dog === null){
+                return res.json({errors: 'No dog with that ID exists or you are not the owner!'})
+            }
+
+            if( isNaN(req.body.trips) || req.body.trips < 0){
+                return res.json({errors: 'Entered trip is not a number or below 0!'})
+            }
+
+            dog
+            .updateOne({ $push: { trips: req.body.trips, calculatedHealth: req.body.trips*1.5 } })  
+            .then((modify) => {
+                return res.json(dog.trips)
             })
             .catch((err) => {
-                console.error(err);
-                res.status(400).json(err)
-                // next(err);
+                return res.status(400).json(err)
             });
+
 });
 
 router.post(
