@@ -26,9 +26,13 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         default: "825 Battery St"
+    },
+    latlong: {
+        type: String,
+        required: false,
+        default: ""
     }
     
-
 });
 
 const User = mongoose.model('users', UserSchema); 

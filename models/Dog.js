@@ -5,6 +5,19 @@ const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever",
 const personalityArray = ["Friendly", "Nervous"];
 
 const DogSchema = new Schema({
+    private: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    trips: {
+        type: Array,
+        required: true,
+    },
+    calculatedHealth: {
+        type: Array,
+        required: true,
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
