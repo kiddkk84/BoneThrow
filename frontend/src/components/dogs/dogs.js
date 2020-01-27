@@ -28,7 +28,7 @@ class Dogs extends React.Component {
             .map(dog => {
                 return (
                     <tr>
-                        <td> {dog.name}</td>
+                        <td> <Link to={`dog/${dog._id}`}>{dog.name}</Link></td>
                         <td> {dog._id}</td>
                         <td> {dog.user} </td>
                         <td> {dog.breed} </td>

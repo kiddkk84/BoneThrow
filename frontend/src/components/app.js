@@ -25,6 +25,7 @@ const App = () => (
         <NavBarContainer />
         {/* <Menu /> */}
         <Switch>
+            <Route path="/dog/:dogId" component={DogShowContainer} />
             <Route exact path="/" component={Landing} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
