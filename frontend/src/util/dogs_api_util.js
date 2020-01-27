@@ -11,3 +11,7 @@ export const getUserDogs = id => {
 export const writeDog = data => {
     return axios.post('/api/dogs/', data)
 }
+
+export const editDog = (id, data) => {
+    return axios.patch(`/api/dogs/${id}`, data)
+}

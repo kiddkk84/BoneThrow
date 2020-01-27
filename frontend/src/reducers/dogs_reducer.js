@@ -12,7 +12,7 @@ const DogsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
             newState.user = action.dogs.data;
             return newState;
         case RECEIVE_NEW_DOG:
-            newState.new = action.dog.data
+            newState.new = action.dog.data 
             return newState;
         default:
             return state;

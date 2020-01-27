@@ -1,5 +1,5 @@
 
-import { getDogs, getUserDogs, writeDog } from '../util/dogs_api_util';
+import { getDogs, getUserDogs, writeDog, editDog } from '../util/dogs_api_util';
 
 export const RECEIVE_DOGS = "RECEIVE_DOGS";
 export const RECEIVE_USER_DOGS = "RECEIVE_USER_DOGS";
@@ -19,6 +19,8 @@ export const receiveNewDog = dog => ({
     type: RECEIVE_NEW_DOG,
     dog
 })
+
+
 
 export const fetchDogs = () => dispatch => (
     getDogs()
@@ -41,4 +43,15 @@ export const composeDog = data => dispatch => (
             // window.alert(err)
         })
         
+);
+
+export const changeDog = (id, data) => dispatch => (
+    editDog(id, data)
+        .then(dog => dispatch(receiveNewDog(dog)))
+        .catch(err => {
+            console.log(err)
+            // window.error = err 
+            // window.alert(err)
+        })
+
 );

@@ -174,13 +174,13 @@ class DogForm extends React.Component {
                                 <br/>
                         <input type="submit" className="btn btn-xxlarge btn-success" value="Add your dog" />
                         
-
+                            {/* 
                         {window.error ? 
                             `${window.error}` :
                             null
-                        }
+                        } */}
 
-                        {this.props.newDog ? 
+                        {this.props.newDog !== undefined && this.props.newDog.trips!== undefined && this.props.newDog.trips.length === 0 ? 
                             <div>
                                 Doggy {this.props.newDog.name} ADDED SUCCESFULLY!
                                 <pre>

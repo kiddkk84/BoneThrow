@@ -5,6 +5,10 @@ const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever",
 const personalityArray = ["Friendly", "Nervous"];
 
 const DogSchema = new Schema({
+    ownerName: {
+        type: String,
+        required: false,
+    },
     private: {
         type: Boolean,
         required: true,

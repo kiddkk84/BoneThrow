@@ -49,16 +49,28 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-router.patch('/:id', function (req, res, next) {
-    Dog
-        .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } }) //instead of where maybe use what router.delete does
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.error(err);
-            next(err);
-        });
+router.patch('/:id', 
+        passport.authenticate("jwt", { session: false }),
+        (req, res) => { 
+        
+            // console.log({_id: req.params.id, user: req.user.id} )
+            Dog
+        // .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } }) //instead of where maybe use what router.delete does
+            // .findById(req.params.id)
+            .findOne({ _id: req.params.id, user: req.user.id })
+            .updateOne({ $push: { trips: req.body.trips } })  // user: req.user.id
+        // .findOne({ _id: req.params.id }) // HAS TO be like this updateone returns something else thats unreadable
+        // .update({ trips: ['tripslmao'] } ) 
+            .then((dog) => {
+                // console.log( Dog.findById(req.params.id))
+                console.log(dog)
+                return res.json(dog);
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(400).json(err)
+                // next(err);
+            });
 });
 
 router.post(
@@ -71,6 +83,7 @@ router.post(
         }
 
         const newDog = new Dog({
+            ownerName: req.user.email,
             user: req.user.id,
             breed: req.body.breed,
             medical: req.body.medical,

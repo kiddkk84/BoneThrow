@@ -7,8 +7,11 @@ class DogShow extends React.Component {
         super(props);
 
         this.state = {
-            dog_name: ''
+            dog_name: '',
+            trip: 5,
+
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentWillMount() {
@@ -43,13 +46,37 @@ class DogShow extends React.Component {
             })
     };
 
-    onChange(e) {
-        this.setState({
-            dog_name: e.target.value
-        });
-        console.log(this.state)
-    }
+    update(field) {
+        return e => {
 
+            this.setState({
+                [field]: e.currentTarget.value
+            });
+            console.log(this.state)
+        }
+    }
+    handleSubmit(e) {
+        e.preventDefault();
+        let dog = {
+            trips: this.state.trip
+            // breed: this.state.breed,
+            // medical: this.state.medical,
+            // age: this.state.age,
+            // gender: this.state.gender,
+            // personality: this.state.personality,
+            // name: this.state.name
+        };
+
+        this.props.changeDog(this.props.dogId, dog);
+        // this.setState({ 
+        //     breed: '',
+        //     medical: '',
+        //     age: '',
+        //     gender: '',
+        //     personality: '',
+        //     name: '',
+        // })
+    }
 
     render() {
         if (this.props.dogs.length === 0) {
@@ -82,6 +109,11 @@ class DogShow extends React.Component {
                             {this.renderList()}
                         </tbody>
                     </table>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
+                        <input type="submit" value="CICKME"/>
+                    </form>
+        
                 </div>
 
             );
