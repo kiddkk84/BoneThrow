@@ -87,10 +87,23 @@ class DogForm extends React.Component {
     }
         
     render() { 
+        let stylez = {
+            margin: `0`,
+            marginLeft: `30%`,
+            background: `yellow`,
+            // position: `absolute`,
+            top: `50%`,
+            left: `50%`,
+            // marginRight: `-50%`,
+            // transform: `translate(-50%, -50%)`,
+        }
 
+        let halfscreen = {
+            width: `50%`
+        }
 
         return (
-            <div>
+            <div style={stylez}>
                 {/* <Layout> */}
                 <form onSubmit={this.handleSubmit}>
                     <div>
@@ -104,9 +117,9 @@ class DogForm extends React.Component {
 
                         <div className="form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="male" onChange={this.update('gender')} checked />
-                                    Male
-                                </label>
+                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="male" onChange={this.update('gender')}  />
+                                    Male 
+                                </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 <label className="form-check-label" >
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="female" onChange={this.update('gender')}/>
                                     Female
@@ -144,6 +157,7 @@ class DogForm extends React.Component {
                                 onChange={this.update('personality')}
                                 placeholder="personality..."
                                 className="form-control" id="exampleFormControlTextarea1" rows="1">
+                                style={halfscreen}
                         </textarea>
 
 
@@ -156,9 +170,26 @@ class DogForm extends React.Component {
                             )
                             }
                         )}
-                                
+                                <br/>
+                                <br/>
                         <input type="submit" className="btn btn-xxlarge btn-success" value="Add your dog" />
+                        
 
+                        {window.error ? 
+                            `${window.error}` :
+                            null
+                        }
+
+                        {this.props.newDog ? 
+                            <div>
+                                Doggy {this.props.newDog.name} ADDED SUCCESFULLY!
+                                <pre>
+                                Feel free to keep adding more!
+                                </pre>
+                            </div>
+
+                       : null}
+                          
             
                     </div>
                 </form>

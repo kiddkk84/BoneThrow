@@ -51,7 +51,7 @@ router.get("/:id", (req, res) => {
 
 router.patch('/:id', function (req, res, next) {
     Dog
-        .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } })
+        .update({ $push: { trips: req.body.trips } }, { where: { id: req.params.id } }) //instead of where maybe use what router.delete does
         .then((result) => {
             res.json(result);
         })

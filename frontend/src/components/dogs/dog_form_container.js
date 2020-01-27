@@ -5,7 +5,7 @@ import DogForm from './dog_form';
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        newDog: state.dogs.new
+        newDog: state.dogs.new,
     };
 };
 

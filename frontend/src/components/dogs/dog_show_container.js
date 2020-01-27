@@ -4,7 +4,7 @@ import { fetchDogs } from '../../actions/dog_actions';
 import DogShow from './dog_show';
 
 const mapStateToProps = (state, { match }) => {
-    const dogId = parseInt(match.params.dogId);
+    const dogId = match.params.dogId;
     return {
         dogId,
         dogs: Object.values(state.dogs.all)

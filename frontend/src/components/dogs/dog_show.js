@@ -23,12 +23,13 @@ class DogShow extends React.Component {
     renderList() {
         return this.props.dogs
             .filter(dog => {
-                return (dog.name.includes(this.state.dog_name) || dog._id.includes(this.state.dog_name) || dog.user.includes(this.state.dog_name) || dog.breed.includes(this.state.dog_name) || dog.date.includes(this.state.dog_name) || dog.gender.slice(0, 1).toUpperCase().includes(this.state.dog_name) || dog.age.toString().includes(this.state.dog_name) || dog.personality.includes(this.state.dog_name) || dog.medical.includes(this.state.dog_name))
+                return dog._id === this.props.dogId
+                
             })
             .map(dog => {
                 return (
                     <tr>
-                        <td> <Link to={`dog/${dog._id}`}>{dog.name}</Link></td>
+                        <td> {dog.name}</td>
                         <td> {dog._id}</td>
                         <td> {dog.user} </td>
                         <td> {dog.breed} </td>
@@ -56,12 +57,6 @@ class DogShow extends React.Component {
         } else {
             return (
                 <div>
-                    Search by Dog Name: &nbsp;
-                        <input
-                        type="text"
-                        value={this.state.dog_name}
-                        onChange={this.onChange.bind(this)}
-                    />
                     <table className="table table-striped">
                         {/* <thead> */}
                         {/* <tr> */}
@@ -76,6 +71,8 @@ class DogShow extends React.Component {
                             <th scope="col">Age</th>
                             <th scope="col">Personality</th>
                             <th scope="col">Medical</th>
+                            {/* {this.props.dogId} */}
+                            
                         </tr>
 
                         {/* </th> */}
@@ -92,4 +89,4 @@ class DogShow extends React.Component {
     }
 }
 
-export default withRouter(Dogs);
+export default withRouter(DogShow);
