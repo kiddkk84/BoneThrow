@@ -4,7 +4,7 @@ const passport = require("passport");
 const validateDogInput = require("../../validation/dogs")
 const Dog = require('../../models/Dog')
 const User = require('../../models/User')
-
+// const rest = require('./getjson')
 
 router.get("/test", (req, res) => {
     res.json({ msg: "This is the dogs route" });
@@ -22,8 +22,9 @@ router.get("/",
     //     // show authenticated user id to get a current user console.log(req.user._id)
     //     return res.json('asdf')
     // })
-
+    
     (req, res) => {
+
         Dog
         .find()
         .sort({ date: -1 })
