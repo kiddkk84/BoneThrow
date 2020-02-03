@@ -35,7 +35,8 @@ class DogForm extends React.Component {
             age: this.state.age,
             gender: this.state.gender,
             personality: this.state.personality,
-            name: this.state.name
+            name: this.state.name,
+            asdf: "asdf"
         };
 
         this.props.composeDog(dog);

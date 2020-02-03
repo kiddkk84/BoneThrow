@@ -34,7 +34,7 @@ const App = () => (
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/register" component={SignupFormContainer} />
             <ProtectedRoute exact path="/dogs" component={DogsContainer} />
-            <ProtectedRoute exact path="/adddog" component={DogFormContainer} />
+            <ProtectedRoute exact path="/adddog" component={CreateProfile} />
             <Redirect to="/" /> 
         </Switch>
         <Footer />

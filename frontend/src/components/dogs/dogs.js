@@ -29,14 +29,15 @@ class Dogs extends React.Component {
                 return (
                     <tr>
                         <td> <Link to={`dog/${dog._id}`}>{dog.name}</Link></td>
-                        <td> {dog._id}</td>
-                        <td> {dog.user} </td>
+                        {/* <td> {dog._id}</td>
+                        <td> {dog.user} </td> */}
+                        <td> {dog.ownerName} </td>
                         <td> {dog.breed} </td>
-                        <td> {dog.date} </td>
                         <td> {dog.gender.slice(0, 1).toUpperCase()} </td>
                         <td> {dog.age} </td>
-                        <td> {dog.personality} </td>
-                        <td> {dog.medical ? dog.medical.join(", ") : null}</td>
+                        <td> {new Date(dog.date).toLocaleDateString("en-US")} </td>
+                        {/* <td> {dog.personality} </td>
+                        <td> {dog.medical ? dog.medical.join(", ") : null}</td> */}
                     </tr>
                 )
             })
@@ -51,39 +52,46 @@ class Dogs extends React.Component {
 
 
     render() {
+        let parentStyle = {
+            textAlign: `center`,
+            marginLeft: `20%`,
+            marginRight: `20%`
+        }
+        let childStyle = {
+            display: `block`        
+        }
+
         if (this.props.dogs.length === 0) {
             return (<div>There are no Dogs</div>)
         } else {
             return (
-                <div>
-                    Search by Dog Name: &nbsp;
+                <div style={parentStyle}>
+                    Search for Dogs! : &nbsp;
                         <input
                         type="text"
                         value={this.state.dog_name}
                         onChange={this.onChange.bind(this)}
                     />
-                    <table className="table table-striped">
+                    <table className="table text-center table-hover table-bordered" style={childStyle}>
                         {/* <thead> */}
-                        {/* <tr> */}
                         {/* <th className="text-center"> */}
                         <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Owner's ID</th>
+                            {/* <th scope="col">ID</th> */}
+                            <th scope="col">Owner</th>
                             <th scope="col">Breed</th>
-                            <th scope="col">Date</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Age</th>
-                            <th scope="col">Personality</th>
-                            <th scope="col">Medical</th>
+                            {/* <th scope="col">Personality</th> */}
+                            <th scope="col">Join Date</th>
+                            {/* <th scope="col">Medical</th> */}
                         </tr>
 
                         {/* </th> */}
-                        {/* </tr> */}
                         {/* </thead> */}
-                        <tbody>
+                        {/* <tbody> */}
                             {this.renderList()}
-                        </tbody>
+                        {/* </tbody> */}
                     </table>
                 </div>
 

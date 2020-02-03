@@ -5,6 +5,26 @@ const breedArray = ["Labrador Retriever", "German Shepherd", "Golden Retriever",
 const personalityArray = ["Friendly", "Nervous"];
 
 const DogSchema = new Schema({
+    skills: {
+        type: Array,
+        required: false,
+    },
+    instagram: {
+        type: String,
+        required: false,
+    },
+    facebook: {
+        type: String,
+        required: false,
+    },
+    youtube: {
+        type: String,
+        required: false,
+    },
+    twitter: {
+        type: String,
+        required: false,
+    },
     ownerName: {
         type: String,
         required: false,

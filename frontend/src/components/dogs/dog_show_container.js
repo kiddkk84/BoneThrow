@@ -8,7 +8,7 @@ const mapStateToProps = (state, { match }) => {
     return {
         dogId,
         dogs: Object.values(state.dogs.all),
-
+        newDog: (state.dogs.new)
     };
 };
 

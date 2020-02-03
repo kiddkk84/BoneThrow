@@ -8,6 +8,8 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile } from "../../actions/profile_actions";
 
+import { composeDog }from "../../actions/dog_actions"
+
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: "",
-      sex: "",
+      gender: "",
       age: "",
       breed: "",
       location: "",
@@ -27,6 +29,9 @@ class CreateProfile extends Component {
       linkedin: "",
       youtube: "",
       instagram: "",
+      medical: [],
+      personality:"",
+      name:"",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -44,9 +49,6 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
-      sex: this.state.sex,
-      age: this.state.age,
-      breed: this.state.breed,
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
@@ -55,14 +57,38 @@ class CreateProfile extends Component {
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
+      instagram: this.state.instagram,
+      gender: this.state.gender,
+      age: this.state.age,
+      breed: this.state.breed,
+      medical: this.state.medical,
+      personality: this.state.personality,
+      name: this.state.name,
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.composeDog(profileData, this.props.history);
+  }
+
+  updateCheckbox(field) {
+    return e => {
+
+      if (!this.state.medical.includes(e.currentTarget.value)) {
+        this.setState({
+          medical: this.state.medical.concat([e.currentTarget.value])
+        });
+      } else {
+        let newMedical = this.state.medical.splice(this.state.medical.indexOf(e.currentTarget.value), 1);
+        this.setState({
+          medical: newMedical
+        });
+      }
+      console.log(this.state)
+    }
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state)
   }
 
   render() {
@@ -138,8 +164,8 @@ class CreateProfile extends Component {
 
     const options1 = [
       { label: "* Select Your Dog's Gender", value: 0 },
-      { label: "Male", value: "Male" },
-      { label: "Female", value: "Female" }
+      { label: "Male", value: "male" },
+      { label: "Female", value: "female" }
     ];
 
     return (
@@ -172,32 +198,32 @@ class CreateProfile extends Component {
                 </div> */}
 
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
+                  placeholder="* Your Dog's Name"
+                  name="name"
+                  value={this.state.name}
                   onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  error={errors.name}
+                  info="A name for your dog's profile."
                 />
 
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="Gender"
+                  name="gender"
+                  value={this.state.gender}
                   onChange={this.onChange}
                   options={options1}
-                  error={errors.status}
+                  error={errors.gender}
                   info="Please select your dog's gender"
                 />
 
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="Breed"
+                  name="breed"
+                  value={this.state.breed}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
-                  info="Give us an idea of where you are at in your career"
+                  error={errors.breed}
+                  info="Select your dog'sbreed"
                 />
 
                 <TextFieldGroup
@@ -228,13 +254,23 @@ class CreateProfile extends Component {
                 />
 
                 <TextAreaFieldGroup
-                  placeholder="A Short Bio of your Dog"
-                  name="bio"
-                  value={this.state.bio}
+                  placeholder="Tell us the personality of your Dog"
+                  name="personality"
+                  value={this.state.personality}
                   onChange={this.onChange}
-                  error={errors.bio}
+                  error={errors.personality}
                   info="Tell us a little about your dog"
                 />
+
+                {["Arthritis", "Allergies", "Diabetes", "IBD", "Obesity"].map((disease, index) => {
+                  return (
+                    <div key={`${disease}-${index}`} className="form-check form-check-inline">
+                      <input className="form-check-input" type="checkbox" id={`inlineCheckbox${index}`} value={disease} onChange={this.updateCheckbox('medical')} />
+                      <label className="form-check-label" >{disease}</label>
+                    </div>
+                  )
+                }
+                )}
 
                 <div className="mb-3">
                   <button
@@ -276,6 +312,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile })(
+export default connect(mapStateToProps, { composeDog })(
   withRouter(CreateProfile)
 );

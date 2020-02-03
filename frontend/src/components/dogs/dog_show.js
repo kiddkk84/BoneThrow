@@ -33,10 +33,11 @@ class DogShow extends React.Component {
                 return (
                     <tr>
                         <td> {dog.name}</td>
-                        <td> {dog._id}</td>
-                        <td> {dog.user} </td>
+                        {/* <td> {dog._id}</td> */}
+                        {/* <td> {dog.user} </td> */}
+                        <td> {dog.ownerName} </td>
                         <td> {dog.breed} </td>
-                        <td> {dog.date} </td>
+                        <td> {new Date(dog.date).toLocaleDateString("en-US")} </td>
                         <td> {dog.gender.slice(0, 1).toUpperCase()} </td>
                         <td> {dog.age} </td>
                         <td> {dog.personality} </td>
@@ -111,7 +112,7 @@ class DogShow extends React.Component {
                     </table>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
-                        <input type="submit" value="CICKME"/>
+                        <input type="submit" value="Add new trip distance"/>
                     </form>
         
                 </div>
