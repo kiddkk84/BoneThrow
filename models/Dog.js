@@ -42,6 +42,10 @@ const DogSchema = new Schema({
         type: Array,
         required: true,
     },
+    weights: {
+        type: Array,
+        required: true,
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'

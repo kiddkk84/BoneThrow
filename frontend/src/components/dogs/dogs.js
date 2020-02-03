@@ -17,10 +17,11 @@ class Dogs extends React.Component {
 
     componentWillReceiveProps(newState) {
         this.setState({ dogs: newState.dogs });
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     renderList() {
+   
         return this.props.dogs
             .filter(dog => {
                 return (dog.name.includes(this.state.dog_name) || dog._id.includes(this.state.dog_name) || dog.user.includes(this.state.dog_name) || dog.breed.includes(this.state.dog_name) || dog.date.includes(this.state.dog_name) || dog.gender.slice(0, 1).toUpperCase().includes(this.state.dog_name) || dog.age.toString().includes(this.state.dog_name) || dog.personality.includes(this.state.dog_name) || dog.medical.includes(this.state.dog_name))
@@ -47,18 +48,25 @@ class Dogs extends React.Component {
         this.setState({
             dog_name: e.target.value
         });
-        console.log(this.state)
+        // console.log(this.state)
+        console.log(this.props.me)
+
     }
 
 
     render() {
         let parentStyle = {
-            textAlign: `center`,
-            marginLeft: `20%`,
-            marginRight: `20%`
+            // textAlign: `center`,
+            // marginLeft: `20%`,
+            // marginRight: `20%`
+            margin: `5vw`,
+            // position: `absolute`,
+            top: `50 %`,
+            left: `50 %`,
+            transform: `translate(-50 %, -50 %)`
         }
         let childStyle = {
-            display: `block`        
+            display: `flexbox`        
         }
 
         if (this.props.dogs.length === 0) {
@@ -66,14 +74,15 @@ class Dogs extends React.Component {
         } else {
             return (
                 <div style={parentStyle}>
-                    Search for Dogs! : &nbsp;
+                    Search for Dogs! : &nbsp; 
                         <input
                         type="text"
                         value={this.state.dog_name}
                         onChange={this.onChange.bind(this)}
                     />
                     <table className="table text-center table-hover table-bordered" style={childStyle}>
-                        {/* <thead> */}
+                        <thead>
+                        
                         {/* <th className="text-center"> */}
                         <tr>
                             <th scope="col">Name</th>
@@ -88,10 +97,10 @@ class Dogs extends React.Component {
                         </tr>
 
                         {/* </th> */}
-                        {/* </thead> */}
-                        {/* <tbody> */}
+                        </thead>
+                        <tbody>
                             {this.renderList()}
-                        {/* </tbody> */}
+                        </tbody>
                     </table>
                 </div>
 

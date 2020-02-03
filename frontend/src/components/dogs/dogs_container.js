@@ -4,7 +4,8 @@ import Dogs from './dogs';
 
 const mapStateToProps = (state) => {
     return {
-        dogs: Object.values(state.dogs.all)
+        dogs: Object.values(state.dogs.all),
+        me: state.session.user.id 
     };
 };
 

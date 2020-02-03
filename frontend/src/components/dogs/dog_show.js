@@ -12,9 +12,10 @@ class DogShow extends React.Component {
 
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.renderTrips = this.renderTrips.bind(this)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchDogs();
     }
 
@@ -69,6 +70,8 @@ class DogShow extends React.Component {
         };
 
         this.props.changeDog(this.props.dogId, dog);
+        setTimeout(this.props.fetchDogs, 1000)
+
         // this.setState({ 
         //     breed: '',
         //     medical: '',
@@ -80,15 +83,40 @@ class DogShow extends React.Component {
     }
 
     renderTrips(){
-        return(<p>
+        return(<span>
             {this.props.dogs
                 .filter(dog => {
                     return dog._id === this.props.dogId
                 })
                 .map(dog => { 
-                    return dog.trips.join(" ,") })}
+                    return dog.trips.join(", ") })}
 
-        </p>)
+        </span>)
+    }
+    renderRecommendation(){ 
+        return ( <span>
+            {this.props.dogs
+                .filter(dog => {
+                    return dog._id === this.props.dogId
+                })
+                .map(dog => {
+                    let average = 0
+                    dog.calculatedHealth.forEach(score => {
+                        average += score
+                    })
+                    return Math.floor(5 + average / dog.calculatedHealth.length * .9 - dog.medical.length * .1 + .1 * dog.breed.length - dog.age * .5)
+                })}
+        </span>
+        )
+
+    }
+    renderErrors(){
+            if(this.props.newDog !== undefined){
+                return (this.props.newDog.errors) 
+            }else{
+                return (null)
+            }
+        
     }
 
     render() {
@@ -97,7 +125,7 @@ class DogShow extends React.Component {
         } else {
             return (
                 <div>
-                    My Dogs!
+                    A dog's show page!
                     <table className="table table-striped">
                         {/* <thead> */}
                         {/* <tr> */}
@@ -129,8 +157,9 @@ class DogShow extends React.Component {
                         <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
                         <input type="submit" value="Add new dog-walk trip's distance"/>
                     </form>
-                    {this.renderTrips()}
-                
+                    Your trips thus far have been: {this.renderTrips()} miles <br/>
+                    We recommend you walk this dog: {this.renderRecommendation()} miles
+                    {this.renderErrors()}
                 </div>
 
             );
