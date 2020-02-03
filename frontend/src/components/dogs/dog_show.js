@@ -79,16 +79,30 @@ class DogShow extends React.Component {
         // })
     }
 
+    renderTrips(){
+        return(<p>
+            {this.props.dogs
+                .filter(dog => {
+                    return dog._id === this.props.dogId
+                })
+                .map(dog => { 
+                    return dog.trips.join(" ,") })}
+
+        </p>)
+    }
+
     render() {
         if (this.props.dogs.length === 0) {
             return (<div>There are no Dogs</div>)
         } else {
             return (
                 <div>
+                    My Dogs!
                     <table className="table table-striped">
                         {/* <thead> */}
                         {/* <tr> */}
                         {/* <th className="text-center"> */}
+                        <tbody>
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">ID</th>
@@ -106,15 +120,17 @@ class DogShow extends React.Component {
                         {/* </th> */}
                         {/* </tr> */}
                         {/* </thead> */}
-                        <tbody>
                             {this.renderList()}
                         </tbody>
                     </table>
+              
+
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
-                        <input type="submit" value="Add new trip distance"/>
+                        <input type="submit" value="Add new dog-walk trip's distance"/>
                     </form>
-        
+                    {this.renderTrips()}
+                
                 </div>
 
             );

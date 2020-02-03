@@ -56,27 +56,27 @@ router.get("/:id", (req, res) => {
 router.patch('/:id', 
         passport.authenticate("jwt", { session: false }),
         async (req, res) => { 
-            
 
             const dog = await Dog.findOne({ _id: req.params.id, user: req.user.id })
 
-            if( dog === null){
-                return res.json({errors: 'No dog with that ID exists or you are not the owner!'})
+            if (dog === null) {
+                return res.json({ errors: 'No dog with that ID exists or you are not the owner!' })
             }
 
-            if( isNaN(req.body.trips) || req.body.trips < 0){
-                return res.json({errors: 'Entered trip is not a number or below 0!'})
+            if(req.body.trips !== undefined && req.body.trips.length > 0){
+                if( isNaN(req.body.trips) || req.body.trips < 0){
+                    return res.json({errors: 'Entered trip is not a number or below 0!'})
+                }
+
+                dog
+                .updateOne({ $push: { trips: req.body.trips, calculatedHealth: req.body.trips*1.5 } })  
+                .then((modify) => {
+                    return res.json(dog.trips)
+                })
+                .catch((err) => {
+                    return res.status(400).json(err)
+                });
             }
-
-            dog
-            .updateOne({ $push: { trips: req.body.trips, calculatedHealth: req.body.trips*1.5 } })  
-            .then((modify) => {
-                return res.json(dog.trips)
-            })
-            .catch((err) => {
-                return res.status(400).json(err)
-            });
-
 });
 
 router.post(
