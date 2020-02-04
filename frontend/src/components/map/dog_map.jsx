@@ -21,7 +21,9 @@ class DogMap extends React.Component{
 
     componentDidMount() {
         const directionsService = new window.google.maps.DirectionsService();
-        const origin = { lat: 37.7989687, lng: -122.4024461 };
+        // const origin = { lat: 37.7989687, lng: -122.4024461 };
+        console.log(this.props.latlong)
+        const origin = {lat: parseInt(this.props.latlong.split(", ")[0]), lng: parseInt(this.props.latlong.split(", ")[1])}
         const destination = { lat: 37.7989687, lng: -122.404 }; 
         // need some logic to create destination 
         // const center = new window.google.maps.LatLng(origin); 

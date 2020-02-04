@@ -27,20 +27,41 @@ class Dogs extends React.Component {
                 return (dog.name.includes(this.state.dog_name) || dog._id.includes(this.state.dog_name) || dog.user.includes(this.state.dog_name) || dog.breed.includes(this.state.dog_name) || dog.date.includes(this.state.dog_name) || dog.gender.slice(0, 1).toUpperCase().includes(this.state.dog_name) || dog.age.toString().includes(this.state.dog_name) || dog.personality.includes(this.state.dog_name) || dog.medical.includes(this.state.dog_name))
             })
             .map(dog => {
-                return (
-                    <tr>
-                        <td> <Link to={`dog/${dog._id}`}>{dog.name}</Link></td>
-                        {/* <td> {dog._id}</td>
-                        <td> {dog.user} </td> */}
-                        <td> {dog.ownerName} </td>
-                        <td> {dog.breed} </td>
-                        <td> {dog.gender.slice(0, 1).toUpperCase()} </td>
-                        <td> {dog.age} </td>
-                        <td> {new Date(dog.date).toLocaleDateString("en-US")} </td>
-                        {/* <td> {dog.personality} </td>
-                        <td> {dog.medical ? dog.medical.join(", ") : null}</td> */}
-                    </tr>
-                )
+                if (this.props.me != dog.user){
+                    return (
+                        <tr>
+                            <td> <Link to={`dog/${dog._id}`}>{dog.name}</Link></td>
+                            {/* <td> {dog._id}</td>
+                            <td> {dog.user} </td> */}
+                            <td> {dog.ownerName} </td>
+                            <td> {dog.breed} </td>
+                            <td> {dog.gender.slice(0, 1).toUpperCase()} </td>
+                            <td> {dog.age} </td>
+                            <td> {new Date(dog.date).toLocaleDateString("en-US")} </td>
+                            {/* <td> {dog.personality} </td>
+                            <td> {dog.medical ? dog.medical.join(", ") : null}</td> */}
+                        </tr>
+                    )
+                        }else{
+                            let whatsGoingOn = {
+                                color: 'Brown',
+                                fontWeight: 'bold'
+                            }
+                            return ( 
+                                <tr style={whatsGoingOn}>
+                                    <td> <Link to={`dog/${dog._id}`}>YOUR {dog.name}</Link></td>
+                                    {/* <td> {dog._id}</td>
+                            <td> {dog.user} </td> */}
+                                    <td> {dog.ownerName} </td>
+                                    <td> {dog.breed} </td>
+                                    <td> {dog.gender.slice(0, 1).toUpperCase()} </td>
+                                    <td> {dog.age} </td>
+                                    <td> {new Date(dog.date).toLocaleDateString("en-US")} </td>
+                                    {/* <td> {dog.personality} </td>
+                            <td> {dog.medical ? dog.medical.join(", ") : null}</td> */}
+                                </tr>
+                                )
+                        }
             })
     };
 

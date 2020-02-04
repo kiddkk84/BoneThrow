@@ -18,7 +18,7 @@ import PrivateRoute from "../components/common/PrivateRoute";
 import CreateProfile from "../components/create-profile/CreateProfile";
 import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
-
+import DogMapContainer from './map/map_container';
 
 
 const App = () => (
@@ -28,7 +28,7 @@ const App = () => (
         <Switch>
             <Route path="/dog/:dogId" component={DogShowContainer} />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/dogmap" component={DogMap} />
+            <Route exact path="/dogmap" component={DogMapContainer} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             <PrivateRoute exact path="/feed" component={Posts} />

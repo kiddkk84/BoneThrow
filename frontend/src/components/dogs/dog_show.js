@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import DogMapContainer from '../map/map_container'
 
 class DogShow extends React.Component {
     constructor(props) {
@@ -159,6 +160,7 @@ class DogShow extends React.Component {
                     </form>
                     Your trips thus far have been: {this.renderTrips()} miles <br/>
                     We recommend you walk this dog: {this.renderRecommendation()} miles
+                    <DogMapContainer recommendation={this.renderRecommendation()}/>
                     {this.renderErrors()}
                 </div>
 

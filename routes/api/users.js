@@ -29,27 +29,32 @@ router.get("/",  (req, res) => {
     })})
 
 
-router.post('/register',  (req, res) =>{
+router.post('/register', async (req, res) =>{
     const { errors, isValid } = validateRegisterInput(req.body);
 
     if (!isValid) {
         return res.status(400).json(errors);
     }
 
-    User.findOne({email: req.body.email})
+   await User.findOne({email: req.body.email})
     .then(user=>{
         if (user) {
             errors.email = 'Email already exists';
             return res.status(400).json(errors);
         } else {
 
+
             const newUser = new User({
                 handle: req.body.handle,
                 email: req.body.email,
                 password: req.body.password,
                 age: req.body.age,
-                address: req.body.address
+                address: req.body.address,
+                latlong: answer
             })
+
+
+            
 
             bcrypt.genSalt(10, (err, salt)=> {
                 bcrypt.hash(newUser.password, salt, (err,hash) => {
@@ -61,6 +66,8 @@ router.post('/register',  (req, res) =>{
                                 id: user.id,
                                 handle: user.handle,
                                 // email: user.email
+                                address: user.address,
+                                latlong: user.latlong  
                             }
                             jwt.sign(
                                 payload,
@@ -79,6 +86,11 @@ router.post('/register',  (req, res) =>{
             })
         }
     })
+
+
+
+
+
 })
 
 
@@ -90,9 +102,39 @@ router.post('/login', async (req, res)=> {
         return res.status(400).json(errors);
     }
 
+
+
     
     const email = req.body.email;
     const password = req.body.password;
+
+    var user = await User.findOne({ email })
+    if (user.address !== undefined) {
+        let urlAddress = user.address.split(" ").join("+").toLowerCase()
+
+        const options = {
+            host: 'maps.googleapis.com',
+            port: 443,
+            path: `/maps/api/geocode/json?address=${urlAddress}&key=AIzaSyDdPczcBVlfk3Zs1YT-TFQDvm6f4TMfLSA`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        rest.getJSON(options, (statusCode, result) => {
+            // I could work with the resulting HTML/JSON here. I could also just return it
+            console.log(`onResult: (${statusCode})\n\n${JSON.stringify(result)}`);
+            // res.statusCode = statusCode;
+            if (result.status !== "ZERO_RESULTS") {
+                user.latlong = `${result.results[0].geometry.location.lat}, ${result.results[0].geometry.location.lng}`
+                // user.update()
+                user.save()
+            }
+            // res.send(result);
+            console.log(user)
+        });
+    };
+
 
     User.findOne({email})
         .then(user => {
@@ -107,6 +149,9 @@ router.post('/login', async (req, res)=> {
                         const payload={
                             id: user.id,
                             handle: user.handle,
+                            address: user.address,
+                            latlong: user.latlong   
+
                             // email: user.email
                         }
                         jwt.sign(
@@ -116,7 +161,7 @@ router.post('/login', async (req, res)=> {
                             (err, token) => {
                                 res.json({
                                     success: true,
-                                    token: 'Bearer ' + token 
+                                    token: 'Bearer ' + token,
                                 });
                             }
                         )           
@@ -149,33 +194,7 @@ router.post('/login', async (req, res)=> {
 
 
     
-    var user = await User.findOne({ email })
-    if (user.address !== undefined) {
-        let urlAddress = user.address.split(" ").join("+").toLowerCase()
-
-        const options = {
-            host: 'maps.googleapis.com',
-            port: 443,
-            path: `/maps/api/geocode/json?address=${urlAddress}&key=AIzaSyDdPczcBVlfk3Zs1YT-TFQDvm6f4TMfLSA`,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-                    }
-        }
-        rest.getJSON(options, (statusCode, result) => {
-            // I could work with the resulting HTML/JSON here. I could also just return it
-            console.log(`onResult: (${statusCode})\n\n${JSON.stringify(result)}`);
-            // res.statusCode = statusCode;
-            if (result.status !== "ZERO_RESULTS"){
-                user.latlong = `${result.results[0].geometry.location.lat}, ${result.results[0].geometry.location.lng}`
-                // user.update()
-                user.save()
-            }
-            // res.send(result);
-            console.log(user)
-        });
-    };
-
+   
    
 
 
