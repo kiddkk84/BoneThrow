@@ -56,6 +56,7 @@ class DogShow extends React.Component {
                 [field]: e.currentTarget.value
             });
             console.log(this.state)
+            this.forceUpdate()
         }
     }
     handleSubmit(e) {
@@ -81,6 +82,8 @@ class DogShow extends React.Component {
         //     personality: '',
         //     name: '',
         // })
+        this.forceUpdate()
+
     }
 
     renderTrips(){
@@ -109,7 +112,6 @@ class DogShow extends React.Component {
                 })}
         </span>
         )
-
     }
     renderErrors(){
             if(this.props.newDog !== undefined){
@@ -158,9 +160,11 @@ class DogShow extends React.Component {
                         <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
                         <input type="submit" value="Add new dog-walk trip's distance"/>
                     </form>
+                    BONETHROW PROPRIETARY BIZ ALGORITHM:
                     Your trips thus far have been: {this.renderTrips()} miles <br/>
-                    We recommend you walk this dog: {this.renderRecommendation()} miles
-                    <DogMapContainer recommendation={this.renderRecommendation()}/>
+                    Based on your previous trips and your dog's health, we recommend you walk this dog: {this.renderRecommendation()} miles
+                    <p>Check out this randomly generated path of {this.renderRecommendation()} miles distance from your address! </p>
+                    <DogMapContainer recommendation={this.renderRecommendation()} trip={this.state.trip}/>
                     {this.renderErrors()}
                 </div>
 

@@ -23,11 +23,28 @@ class DogMap extends React.Component{
         const directionsService = new window.google.maps.DirectionsService();
         // const origin = { lat: 37.7989687, lng: -122.4024461 };
         console.log(this.props.latlong)
-        const origin = {lat: parseInt(this.props.latlong.split(", ")[0]), lng: parseInt(this.props.latlong.split(", ")[1])}
-        const destination = { lat: 37.7989687, lng: -122.404 }; 
+        const origin = {lat: parseFloat(this.props.latlong.split(", ")[0]), lng: parseFloat(this.props.latlong.split(", ")[1])}
+        // const destination = { lat: 37.7989687, lng: -122.404 }; 
         // need some logic to create destination 
-        // const center = new window.google.maps.LatLng(origin); 
-    
+        const center = new window.google.maps.LatLng(origin); 
+
+        // 37 N latitude a diff of 1 deg longitude is 89 km, 122 W longitude a diff of 1 deg latitude is 111 km
+        // 55.3 miles, 68.9 miles
+        // assume: all users are in san francisco
+
+        // uniform disk point picking calc 
+        // lazy calc is x = r^.5 cos(theta) y = r^.5 sin(theta) where theta is [0, 2 pi] and r is element of [0, distance to walk] 
+        // i think just always choose r = recmmmended distance
+        // assume straight lines -- no way for me to handle curves and loopy long things-- we just walk a straight radii
+        let randomAngle = Math.random() * 2 * Math.PI
+        // console.log(this.props.recommendation.props.children[0])
+        let distance = this.props.recommendation.props.children[0]
+        // const destination = {lat: 37.79 , lng: -122.404}
+        const destination = {lat: (Math.sqrt(distance)*Math.cos(randomAngle)/ 68.9) + origin[`lat`],
+            lng: (Math.sqrt(distance) * Math.sin(randomAngle) / 55.3) + origin[`lng`]}
+        console.log(distance)
+        console.log(destination)        
+        console.log(origin)
         directionsService.route(
             {
                 origin: origin,
