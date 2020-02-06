@@ -20,9 +20,11 @@ class DogMap extends React.Component{
 
 
     componentDidMount() {
+        console.log('------------------')
+        console.log(this.props.recommendation);
         const directionsService = new window.google.maps.DirectionsService();
         // const origin = { lat: 37.7989687, lng: -122.4024461 };
-        console.log(this.props.latlong)
+        // console.log(this.props.latlong)
         const origin = {lat: parseFloat(this.props.latlong.split(", ")[0]), lng: parseFloat(this.props.latlong.split(", ")[1])}
         // const destination = { lat: 37.7989687, lng: -122.404 }; 
         // need some logic to create destination 
@@ -40,11 +42,11 @@ class DogMap extends React.Component{
         // console.log(this.props.recommendation.props.children[0])
         let distance = this.props.recommendation.props.children[0]
         // const destination = {lat: 37.79 , lng: -122.404}
-        const destination = {lat: (Math.sqrt(distance)*Math.cos(randomAngle)/ 68.9) + origin[`lat`],
-            lng: (Math.sqrt(distance) * Math.sin(randomAngle) / 55.3) + origin[`lng`]}
-        console.log(distance)
-        console.log(destination)        
-        console.log(origin)
+        const destination = {lat: (Math.sqrt(distance)*Math.cos(randomAngle))/ (100*68.9) + origin[`lat`],
+            lng: (Math.sqrt(distance) * Math.sin(randomAngle) / (100*55.3) + origin[`lng`])}
+        // console.log(distance)
+        // console.log(destination)        
+        // console.log(origin)
         directionsService.route(
             {
                 origin: origin,
@@ -63,7 +65,9 @@ class DogMap extends React.Component{
             });
     }
 
-
+    shouldComponentUpdate() {
+        return true;
+    }
     fetchPlaces(map) {
         const request = {
             location: origin,

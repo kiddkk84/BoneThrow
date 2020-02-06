@@ -123,6 +123,7 @@ class Dogs extends React.Component {
                             {this.renderList()}
                         </tbody>
                     </table>
+                    
                 </div>
 
             );

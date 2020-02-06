@@ -43,6 +43,31 @@ router.post('/register', async (req, res) =>{
             return res.status(400).json(errors);
         } else {
 
+            var answer
+            let urlAddress = req.body.address.split(" ").join("+").toLowerCase()
+
+            const options = {
+                host: 'maps.googleapis.com',
+                port: 443,
+                path: `/maps/api/geocode/json?address=${urlAddress}&key=AIzaSyDdPczcBVlfk3Zs1YT-TFQDvm6f4TMfLSA`,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            rest.getJSON(options, async (statusCode, result) => {
+                // I could work with the resulting HTML/JSON here. I could also just return it
+                console.log(`onResult: (${statusCode})\n\n${JSON.stringify(result)}`);
+                // res.statusCode = statusCode;
+                if (result.status !== "ZERO_RESULTS") {
+                    answer = `${result.results[0].geometry.location.lat}, ${result.results[0].geometry.location.lng}`
+                    // user.update()
+                   await User.update({email: req.body.email}, {$set: { latlong: answer}})
+                }
+                // res.send(result);
+                console.log(user)
+            });
 
             const newUser = new User({
                 handle: req.body.handle,
@@ -110,7 +135,7 @@ router.post('/login', async (req, res)=> {
 
     var user = await User.findOne({ email })
     if (user.address !== undefined) {
-        let urlAddress = user.address.split(" ").join("+").toLowerCase()
+        let urlAddress = req.body.address.split(" ").join("+").toLowerCase()
 
         const options = {
             host: 'maps.googleapis.com',
@@ -136,7 +161,7 @@ router.post('/login', async (req, res)=> {
     };
 
 
-    User.findOne({email})
+    await User.findOne({email})
         .then(user => {
             if (!user){
                 errors.email = 'User not found';

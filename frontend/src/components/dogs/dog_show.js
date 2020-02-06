@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import DogMapContainer from '../map/map_container'
 
+
 class DogShow extends React.Component {
     constructor(props) {
         super(props);
@@ -10,10 +11,10 @@ class DogShow extends React.Component {
         this.state = {
             dog_name: '',
             trip: '',
-
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.renderTrips = this.renderTrips.bind(this)
+        this.renderRecommendation.bind(this)
     }
 
     componentDidMount() {
@@ -23,6 +24,7 @@ class DogShow extends React.Component {
     componentWillReceiveProps(newState) {
         this.setState({ dogs: newState.dogs });
         console.log(this.state)
+        this.forceUpdate()
     }
 
     renderList() {
@@ -56,7 +58,6 @@ class DogShow extends React.Component {
                 [field]: e.currentTarget.value
             });
             console.log(this.state)
-            this.forceUpdate()
         }
     }
     handleSubmit(e) {
@@ -72,7 +73,11 @@ class DogShow extends React.Component {
         };
 
         this.props.changeDog(this.props.dogId, dog);
-        setTimeout(this.props.fetchDogs, 1000)
+        setTimeout(()=>{
+            this.props.fetchDogs()
+            this.forceUpdate()
+            // this.props.history.go(0)
+        } , 1000)
 
         // this.setState({ 
         //     breed: '',
@@ -82,7 +87,6 @@ class DogShow extends React.Component {
         //     personality: '',
         //     name: '',
         // })
-        this.forceUpdate()
 
     }
 
@@ -121,6 +125,21 @@ class DogShow extends React.Component {
             }
         
     }
+    renderDogFoodRecommendations(){
+        return (
+            <div>
+            <p> We recommend you look into this dog food!</p>
+            <iframe src="https://www.dogfoodadvisor.com/best-dog-foods/best-dry-dog-foods/" width="540" height="450"></iframe>
+           
+        {/* <iframe src="https://www.pedigree.com/dog-foods/details/pedigree-active-senior-roasted-chicken-rice-vegetable-flavor" width="540" height="450"></iframe> */}
+            </div>
+        )
+
+    }
+
+    shouldComponentUpdate(){
+        return true;
+    }
 
     render() {
         if (this.props.dogs.length === 0) {
@@ -136,14 +155,13 @@ class DogShow extends React.Component {
                         <tbody>
                         <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Owner's ID</th>
+                            <th scope="col">Owner's Email</th>
                             <th scope="col">Breed</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Date Joined</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Age</th>
                             <th scope="col">Personality</th>
-                            <th scope="col">Medical</th>
+                            <th scope="col">Medical Conditions</th>
                             {/* {this.props.dogId} */}
                             
                         </tr>
@@ -163,9 +181,13 @@ class DogShow extends React.Component {
                     BONETHROW PROPRIETARY BIZ ALGORITHM:
                     Your trips thus far have been: {this.renderTrips()} miles <br/>
                     Based on your previous trips and your dog's health, we recommend you walk this dog: {this.renderRecommendation()} miles
-                    <p>Check out this randomly generated path of {this.renderRecommendation()} miles distance from your address! </p>
-                    <DogMapContainer recommendation={this.renderRecommendation()} trip={this.state.trip}/>
-                    {this.renderErrors()}
+                    <p>Check out this randomly generated path of {this.renderRecommendation()} miles distance from your address! 
+                    (assuming the path is straight and you are close to san francisco's latitude/longitude</p>
+                    <div style={{display: `flex`}}>
+                        <DogMapContainer recommendation={this.renderRecommendation()} trip={this.state.trip}/>
+                        {this.renderErrors()}
+                        {this.renderDogFoodRecommendations()}
+                    </div>
                 </div>
 
             );
