@@ -26,9 +26,9 @@ const App = () => (
         <NavBarContainer />
         {/* <Menu /> */}
         <Switch>
-            <Route path="/dog/:dogId" component={DogShowContainer} />
+            <ProtectedRoute path="/dog/:dogId" component={DogShowContainer} />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/dogmap" component={DogMapContainer} />
+            <ProtectedRoute exact path="/dogmap" component={DogMapContainer} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             <PrivateRoute exact path="/feed" component={Posts} />

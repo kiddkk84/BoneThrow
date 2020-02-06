@@ -76,7 +76,7 @@ class DogShow extends React.Component {
         setTimeout(()=>{
             this.props.fetchDogs()
             this.forceUpdate()
-            // this.props.history.go(0)
+            this.props.history.go(0)
         } , 1000)
 
         // this.setState({ 

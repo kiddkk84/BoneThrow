@@ -36,9 +36,8 @@ router.post('/register', async (req, res) =>{
         return res.status(400).json(errors);
     }
 
-   await User.findOne({email: req.body.email})
-    .then(user=>{
-        if (user) {
+    let registeringUser = await User.findOne({email: req.body.email})
+        if (registeringUser) {
             errors.email = 'Email already exists';
             return res.status(400).json(errors);
         } else {
@@ -56,20 +55,22 @@ router.post('/register', async (req, res) =>{
                 }
             }
 
-            rest.getJSON(options, async (statusCode, result) => {
+            await rest.getJSON(options, async (statusCode, result) => {
                 // I could work with the resulting HTML/JSON here. I could also just return it
-                console.log(`onResult: (${statusCode})\n\n${JSON.stringify(result)}`);
+                // console.log(`onResult: (${statusCode})\n\n${JSON.stringify(result)}`);
                 // res.statusCode = statusCode;
                 if (result.status !== "ZERO_RESULTS") {
-                    answer = `${result.results[0].geometry.location.lat}, ${result.results[0].geometry.location.lng}`
+                    answer = await `${result.results[0].geometry.location.lat}, ${result.results[0].geometry.location.lng}`
+                    await console.log(answer)
                     // user.update()
-                   await User.update({email: req.body.email}, {$set: { latlong: answer}})
+                //    await User.update({email: req.body.email}, {$set: { latlong: answer}})
                 }
                 // res.send(result);
-                console.log(user)
             });
 
-            const newUser = new User({
+            await console.log(answer)
+            setTimeout( async ()=> {
+            const newUser =  new User({
                 handle: req.body.handle,
                 email: req.body.email,
                 password: req.body.password,
@@ -78,11 +79,12 @@ router.post('/register', async (req, res) =>{
                 latlong: answer
             })
 
+            console.log(newUser)
 
             
 
-            bcrypt.genSalt(10, (err, salt)=> {
-                bcrypt.hash(newUser.password, salt, (err,hash) => {
+            await bcrypt.genSalt(10, (err, salt)=> {
+                 bcrypt.hash(newUser.password, salt, (err,hash) => {
                     if (err) throw err; 
                     newUser.password = hash; 
                     newUser.save()
@@ -109,14 +111,12 @@ router.post('/register', async (req, res) =>{
                         .catch(err => console.log(err))
                 })  
             })
+            }, 1500)
         }
     })
 
 
 
-
-
-})
 
 
 router.post('/login', async (req, res)=> {
@@ -134,8 +134,8 @@ router.post('/login', async (req, res)=> {
     const password = req.body.password;
 
     var user = await User.findOne({ email })
-    if (user.address !== undefined) {
-        let urlAddress = req.body.address.split(" ").join("+").toLowerCase()
+    if (user.address.length !== 0 && user.latlong.length === 0) {
+        let urlAddress = user.address.split(" ").join("+").toLowerCase()
 
         const options = {
             host: 'maps.googleapis.com',

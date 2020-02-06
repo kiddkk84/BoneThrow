@@ -42,11 +42,11 @@ class DogMap extends React.Component{
         // console.log(this.props.recommendation.props.children[0])
         let distance = this.props.recommendation.props.children[0]
         // const destination = {lat: 37.79 , lng: -122.404}
-        const destination = {lat: (Math.sqrt(distance)*Math.cos(randomAngle))/ (100*68.9) + origin[`lat`],
-            lng: (Math.sqrt(distance) * Math.sin(randomAngle) / (100*55.3) + origin[`lng`])}
-        // console.log(distance)
-        // console.log(destination)        
-        // console.log(origin)
+        const destination = {lat: (Math.sqrt(distance)*Math.cos(randomAngle))/68.9 + origin[`lat`],
+            lng: (Math.sqrt(distance) * Math.sin(randomAngle))/55.3 + origin[`lng`]}
+        console.log(distance)
+        console.log(destination)        
+        console.log(origin)
         directionsService.route(
             {
                 origin: origin,
