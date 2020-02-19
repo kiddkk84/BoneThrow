@@ -14,7 +14,7 @@ class DogMap extends React.Component{
             // directions: null,
             places: []
         };
-        this.mapMounted = this.mapMounted.bind(this);
+        // this.mapMounted = this.mapMounted.bind(this);
 
     }
 
@@ -63,12 +63,17 @@ class DogMap extends React.Component{
                     console.error(`error fetching directions ${result}`);
                 }
             });
+
+        this.fetchPlaces()
     }
 
     shouldComponentUpdate() {
         return true;
     }
+
+
     fetchPlaces(map) {
+        const origin = { lat: 37.7989687, lng: -122.4024461 };
         const request = {
             location: origin,
             radius: "500",
@@ -83,15 +88,16 @@ class DogMap extends React.Component{
                         id: i
                     };
                 });
+                // console.log(places);
                 this.setState({ places });
             }
         });
     }
 
-    mapMounted(element) {
-        const mapObject = element.context[window.MAP];
-        this.fetchPlaces(mapObject);
-    }
+    // mapMounted(element) {
+    //     const mapObject = element.context[window.MAP];
+    //     this.fetchPlaces(mapObject);
+    // }
 
 
 
