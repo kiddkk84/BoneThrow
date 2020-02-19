@@ -22,7 +22,7 @@ import DogMapContainer from './map/map_container';
 
 
 const App = () => (
-    <div>
+    <div style={{position:`relative`}}>
         <NavBarContainer />
         {/* <Menu /> */}
         <Switch>
@@ -38,7 +38,7 @@ const App = () => (
             <ProtectedRoute exact path="/adddog" component={CreateProfile} />
             <Redirect to="/" /> 
         </Switch>
-        <Footer />
+        <Footer/>
 
 
     </div>

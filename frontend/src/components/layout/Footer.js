@@ -2,8 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white mt-5 p-4 text-center">
+    <div className="footer bg-dark text-white mb-0 p-4 text-center fixed-bottom"> 
+    {/* fixed-bottom */}
       Copyright &copy; {new Date().getFullYear()} BoneThrow
-    </footer>
+    </div>
   );
 }

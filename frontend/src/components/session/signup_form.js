@@ -50,15 +50,17 @@ class SignupForm extends React.Component {
 
     // renderErrors() {
     //     return (
-    //         <ul>
-    //             {Object.keys(this.state.errors).map((error, i) => (
+    //         this.props.errors !== null ? <ul>
+    //             {Object.keys(this.props.errors).map((error, i) => (
     //                 <li key={`error-${i}`}>
-    //                     {this.state.errors[error]}
+    //                     {this.props.errors[error]}
     //                 </li>
     //             ))}
-    //         </ul>
+    //         </ul> :
+    //         null
     //     );
     // }
+
 
     render() {
         return (
@@ -128,10 +130,13 @@ class SignupForm extends React.Component {
                             />
                         </div>
 
-
-                        <button className="btn btn-primary">Submit</button>
+                    <div className="d-flex flex-nowrap justify-content-center">
+                    <button className="btn btn-primary ">Submit</button>
                         {/* {this.renderErrors()} */}
-                  
+                    {this.props.errors.length === 0 ? null :
+                        <span className="alert">{Object.values(this.props.errors).map(error => error)}</span>
+                    }
+                    </div>
                     </form>
                 {/* </Layout> */}
             </div>
