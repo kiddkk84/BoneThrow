@@ -18,13 +18,14 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Bone Throw</h1>
-                <p className="lead">
+                <h1 className="display-3 mb-4" style={{ color: `black` }}>Bone Throw</h1>
+                <p className="lead" style={{ color: `black` }}>
                   {" "}
-                  Create a dog profile/portfolio, share posts and dogs lifestyle
+                  Create a dog profile/portfolio! Share posts and your dog's lifestyle!
+                  <img src="img/dog.jpg" style={{ height: `50%`, width: `50%` }}></img>
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
+                <Link to="/register" className="btn btn-lg btn-info mr-2 btn-outline-primary">
                   Sign Up
                 </Link>
                 <Link to="/login" className="btn btn-lg btn-light">
