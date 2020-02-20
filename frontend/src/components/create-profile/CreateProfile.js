@@ -286,7 +286,7 @@ class CreateProfile extends Component {
                   </button>
                   <span className="text-muted">Optional</span>
                 </div>
-
+                  {(this.props.newDog) ? <span>ADDED {Object.values(this.props.newDog)[13]} !!!</span> : null}
                 {socialInputs}
                 <input
                   type="submit"
@@ -313,7 +313,8 @@ CreateProfile.propTypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
+  newDog: state.dogs.new
 });
 
 export default connect(mapStateToProps, { composeDog })(
