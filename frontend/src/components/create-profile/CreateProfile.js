@@ -236,7 +236,7 @@ class CreateProfile extends Component {
                 />
 
                 <TextFieldGroup
-                  placeholder="Location"
+                  placeholder="Location (Optional)"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
@@ -245,7 +245,7 @@ class CreateProfile extends Component {
                 />
 
                 <TextFieldGroup
-                  placeholder="* Skills"
+                  placeholder="* Skills (Optional)"
                   name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
@@ -254,7 +254,7 @@ class CreateProfile extends Component {
                 />
 
                 <TextAreaFieldGroup
-                  placeholder="Tell us the personality of your Dog"
+                  placeholder="Tell us the personality of your Dog (Optional)"
                   name="personality"
                   value={this.state.personality}
                   onChange={this.onChange}
