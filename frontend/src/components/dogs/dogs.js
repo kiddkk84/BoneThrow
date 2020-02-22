@@ -84,17 +84,33 @@ class Dogs extends React.Component {
             // position: `absolute`,
             top: `50 %`,
             left: `50 %`,
-            transform: `translate(-50 %, -50 %)`
+            transform: `translate(-50 %, -50 %)`,
+            zIndex: `99`
+
         }
         let childStyle = {
-            display: `flexbox`        
+            display: `flexbox`,
         }
+
+        let backgrounder = {
+            position: `absolute`, 
+            top: `0px`,
+            right: `0px`,
+            bottom: `0px`, 
+            left: `0px`,
+            zIndex: `-1`,
+            filter: `grayscale(100%)`,
+            // filter: 'brightness(2)'
+        }
+
 
         if (this.props.dogs.length === 0) {
             return (<div>There are no Dogs</div>)
         } else {
             return (
-                <div style={parentStyle}>
+                
+                <div  style={parentStyle}>
+                    <div id="asdf" style={backgrounder}></div>
                     Search for Dogs! : &nbsp; 
                         <input
                         type="text"

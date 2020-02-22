@@ -251,8 +251,11 @@ class DogShow extends React.Component {
             return (<div>There are no Dogs</div>)
         } else {
             return (
-                <div>
+                <div id="shadowme" style={{ borderRadius: `40px`, background: `#eee`, border: `dashed`, borderWidth: `2px 4px` }}>
+
+                <div style={{padding:`2%`}}>
                     A dog's show page!
+                    
                     <table className="table table-striped">
                         {/* <thead> */}
                         {/* <tr> */}
@@ -277,39 +280,45 @@ class DogShow extends React.Component {
                             {this.renderList()}
                         </tbody>
                     </table>
-              
 
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
-                        <input type="submit" value="Add new dog-walk trip's distance"/>
-                    </form>
-                    BONETHROW PROPRIETARY BIZ ALGORITHM:
-                    Your trips thus far have been: {this.renderTrips()} miles <br/>
-                    <div>
-                        <canvas id="chLine"
-                            height="50px"></canvas>
+                        <div style={{ display: `flex`}}>
+                            <div style={{ width: `45%`, margin: `0 auto`}}>
+
+                                {this.renderErrors()}
+                                BONETHROW PROPRIETARY BIZ ALGORITHM:
+                                Your trips thus far have been: {this.renderTrips()} miles <br/>
+
+                                <form onSubmit={this.handleSubmit}>
+                                    <input type="text" value={this.state.trip} onChange={this.update('trip').bind(this)}></input>
+                                    <input type="submit" value="Add new dog-walk trip's distance" />
+                                </form>
+                                
+                            </div>
+                            <div style={{ width: `45%`, margin: `0 auto`}}>
+                                <canvas id="chLine"
+                                    height="50px"></canvas>
+                            </div>
+                        </div>
+                        <div style={{ display: `flex` }}>
+
+                            <div style={{ width: `45%`, margin: `0 auto` }}>
+                                Based on your previous trips and your dog's health, we recommend you walk this dog: {this.renderRecommendation()} miles
+                                <p>Check out this randomly generated path of {this.renderRecommendation()} miles distance from your address! 
+                                (assuming the path is straight and you are close to san francisco's latitude/longitude</p>
+                            </div>
+
+                            <div style={{width: `45%`, margin: `0 auto` }}>
+                                <DogMapContainer recommendation={this.renderRecommendation()} trip={this.state.trip} />
+                            </div>
+                            <div style={{ display: `flex`, justifyContent: 'space-evenly' }}>
+                                {this.renderDogFoodRecommendations()}
+                            </div>
+                        </div>
                     </div>
 
-                    Based on your previous trips and your dog's health, we recommend you walk this dog: {this.renderRecommendation()} miles
-                    <p>Check out this randomly generated path of {this.renderRecommendation()} miles distance from your address! 
-                    (assuming the path is straight and you are close to san francisco's latitude/longitude</p>
-                    
 
-                
-
-
-                    
-                    
-                    <div style={{display: `flex`}}>
-                        <DogMapContainer recommendation={this.renderRecommendation()} trip={this.state.trip}/>
-                        {this.renderErrors()}
-                        {this.renderDogFoodRecommendations()}
-                    </div>
                     <br/>
                     <br />
-
-                    <br />
-
                     <br />
 
 
