@@ -52,6 +52,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentProfile } from "../../actions/profile_actions";
 import CartIcon from "../cart/cart-icon.component"
+import CartDropdown from '../cart/cart-dropdown.component'
 // import './navbar.css'
 
 class NavBar extends React.Component {
@@ -131,6 +132,7 @@ class NavBar extends React.Component {
                 </ul>
                 <CartIcon />
               </div>
+              <CartDropdown />
             </div>
           </nav>
         </div>
