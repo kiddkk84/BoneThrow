@@ -51,6 +51,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentProfile } from "../../actions/profile_actions";
+import CartIcon from "../cart/cart-icon.component"
 // import './navbar.css'
 
 class NavBar extends React.Component {
@@ -116,6 +117,11 @@ class NavBar extends React.Component {
                       Dog Profile
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/collection">
+                      Collection
+                    </Link>
+                  </li>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
@@ -123,6 +129,7 @@ class NavBar extends React.Component {
                     <button onClick={this.logoutUser}>Logout</button>
                   </li>
                 </ul>
+                <CartIcon />
               </div>
             </div>
           </nav>
@@ -158,6 +165,7 @@ class NavBar extends React.Component {
                       Shop
                     </Link>
                   </li>
+                  
                 </ul>
 
                 <ul className="navbar-nav ml-auto">

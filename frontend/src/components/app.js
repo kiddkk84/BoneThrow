@@ -20,11 +20,8 @@ import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
 import DogMapContainer from './map/map_container';
 import ShopPage from './shoppage/shoppage.component';
-// const HatsPage = () => (
-//     <div>
-//         <h1>HATS PAGE</h1>
-//     </div>
-// )
+import ShopAllPage from './shoppage/shop.component'
+
 
 const App = () => (
     <div style={{position:`relative`}}>
@@ -32,6 +29,7 @@ const App = () => (
         {/* <HomePage /> */}
         {/* <Menu /> */}
         <Switch>
+            <Route exact path='/collection' component={ShopAllPage} />
             <Route exact path='/shop' component={ShopPage} />
             <ProtectedRoute path="/dog/:dogId" component={DogShowContainer} />
             <Route exact path="/" component={Landing} />
