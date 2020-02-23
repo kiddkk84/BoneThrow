@@ -153,6 +153,11 @@ class NavBar extends React.Component {
                       Profile
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/shop">
+                      Shop
+                    </Link>
+                  </li>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
