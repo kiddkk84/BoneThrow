@@ -6,13 +6,16 @@ import dogs from './dogs_reducer';
 import profileReducer from './profile_reducer';
 import postReducer from "./post_reducer";
 
+import cartReducer from "./cart_reducer"
+
 const RootReducer = combineReducers({
     session,
     errors,
     // tweets
     dogs,
     profile: profileReducer,
-    post: postReducer
+    post: postReducer,
+    cart: cartReducer
 
 });
 

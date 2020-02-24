@@ -132,7 +132,8 @@ class NavBar extends React.Component {
                 </ul>
                 <CartIcon />
               </div>
-              <CartDropdown />
+              {this.props.hidden ? null : <CartDropdown />}
+              {/* <CartDropdown /> */}
             </div>
           </nav>
         </div>
