@@ -3,44 +3,38 @@ import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Chart from 'chart.js';
 
+// http://slimdoggy.com/calculating-a-dogs-body-mass-index/
+// caclulate your dog's personality mapped to sentiment analysis or something
+//https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
-class Stocks extends React.Component {
+class DogBmi extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             response: ''
         }
+        let myStorage = window.localStorage;
+        localStorage.setItem('myCat', 'Tom');
+        var cat = localStorage.getItem('myCat');
+        localStorage.removeItem('myCat');
+        localStorage.clear();
 
-        this.graphRuns=this.graphRuns.bind(this);
+        this.graphRuns = this.graphRuns.bind(this);
     }
 
-    componentDidMount(){
-        fetch('https://edwardpa.pythonanywhere.com/')
-            .then((response) => {
-                return response.json();
-            })
-            .then((myJson) => {
-                this.setState({
-                    response: myJson,
-                })
-                // console.log(this.state);
-                // console.log(this.state.response.PETS[`alpha`])
-                // console.log(this.state.response.PETS[`eleslow`])
-                this.graphRuns();
-            });
+    componentDidMount() {
+
     }
 
-    // componentDidUpdate(){
-    //     this.graphRuns();
-    // }
+    componentDidUpdate(){
+    }
 
-    // componentWillReceiveProps(newState) {
-    //     console.log(this.state)
-    //     this.forceUpdate()
-    // }
+    componentWillReceiveProps(newState) {
+       
+    }
 
-    graphRuns(){
+    graphRuns() {
         /* chart.js chart examples 
         https://www.codeply.com/go/3l6UhaQEhq/bootstrap-4-chartjs
         */
@@ -70,8 +64,8 @@ class Stocks extends React.Component {
                 borderColor: 'transparent',
                 borderWidth: 0,
                 pointBackgroundColor: colors[0]
-            
-              
+
+
             }]
         };
         if (chLine) {
@@ -126,16 +120,19 @@ class Stocks extends React.Component {
     }
 
     render() {
-        return(
+        return (
             // <div style={{ width: `45%`, margin: `0 auto`}}>
             <div>
-                    <canvas id="chLine" height="1000px" width="1500px"></canvas>  
-
+                {/* <canvas id="chLine" height="1000px" width="1500px"></canvas> */}
+                DOG BMI CALUCLATOR
             </div>
 
-            );
+        );
     }
-    
+
 }
 
-export default withRouter(Stocks);
+export default withRouter(DogBmi);
+
+
+

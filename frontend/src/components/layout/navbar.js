@@ -121,6 +121,11 @@ class NavBar extends React.Component {
                       Dog Stocks
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/bmi">
+                      Dog BMI Calculator
+                    </Link>
+                  </li>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">

@@ -20,6 +20,7 @@ import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
 import DogMapContainer from './map/map_container';
 import Stocks from './dogs/stocks';
+import DogBmi from './dogs/dog_bmi'
 
 const App = () => (
     <div style={{position:`relative`}}>
@@ -37,6 +38,7 @@ const App = () => (
             <ProtectedRoute exact path="/dogs" component={DogsContainer} />
             <ProtectedRoute exact path="/adddog" component={CreateProfile} />
             <ProtectedRoute exact path="/stocks" component={Stocks} />
+            <ProtectedRoute exact path="/bmi" component={DogBmi} />
 
             <Redirect to="/" /> 
         </Switch>
