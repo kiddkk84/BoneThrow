@@ -9,7 +9,7 @@ class Stocks extends React.Component {
         super(props);
 
         this.state = {
-  
+            response: ''
         }
 
         this.graphRuns=this.graphRuns.bind(this);
@@ -21,18 +21,24 @@ class Stocks extends React.Component {
                 return response.json();
             })
             .then((myJson) => {
-                console.log(myJson);
+                this.setState({
+                    response: myJson,
+                })
+                // console.log(this.state);
+                // console.log(this.state.response.PETS[`alpha`])
+                // console.log(this.state.response.PETS[`eleslow`])
+                this.graphRuns();
             });
     }
 
-    componentDidUpdate(){
-        this.graphRuns();
-    }
+    // componentDidUpdate(){
+    //     this.graphRuns();
+    // }
 
-    componentWillReceiveProps(newState) {
-        console.log(this.state)
-        this.forceUpdate()
-    }
+    // componentWillReceiveProps(newState) {
+    //     console.log(this.state)
+    //     this.forceUpdate()
+    // }
 
     graphRuns(){
         /* chart.js chart examples 
@@ -42,24 +48,27 @@ class Stocks extends React.Component {
         // chart colors
         var colors = ['#007bff', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
 
+
+        var value = this.state.response.PETS[`eleslow`];
+        var json = JSON.parse("[" + value + "]");
+
+        console.log(json);
+
         /* large line chart */
-        let number = [];
+        let number = json[0].length;
+        console.log(number)
         var chLine = document.getElementById("chLine");
         var chartData = {
             // labels: ["S", "M", "T", "W", "T", "F", "S"],
             labels: Array.apply(null, Array(number)).map(function (_, i) { return i; }),
             datasets: [{
                 // data: [589, 445, 483, 503, 689, 692, 634],
-                data: this.props.dogs
-                    .filter(dog => {
-                        return dog._id === this.props.dogId
-                    })
-                    .map(dog => {
-                        return dog.trips
-                    })[0],
+                // data: this.state.response.PETS[`eleslow`],
+                data: json[0],
                 backgroundColor: 'transparent',
-                borderColor: colors[0],
-                borderWidth: 4,
+                // borderColor: colors[0],
+                borderColor: 'transparent',
+                borderWidth: 0,
                 pointBackgroundColor: colors[0]
             
               
@@ -118,9 +127,10 @@ class Stocks extends React.Component {
 
     render() {
         return(
-                <div>
-                    asdf
-                </div>
+            <div style={{ width: `45%`, margin: `0 auto`}}>
+                    <canvas id="chLine" height="300px" width="1000px"></canvas>  
+
+            </div>
 
             );
     }
