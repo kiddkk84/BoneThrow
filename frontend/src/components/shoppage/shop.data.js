@@ -67,27 +67,27 @@ const SHOP_DATA = [
     items: [
       {
         id: 10,
-        name: "Adidas NMD",
-        imageUrl: "https://i.ibb.co/0s3pdnc/adidas-nmd.png",
-        price: 220
+        name: "Authority Experts",
+        imageUrl: "https://i.ibb.co/GVb8nSJ/1.jpg",
+        price: 38
       },
       {
         id: 11,
-        name: "Adidas Yeezy",
-        imageUrl: "https://i.ibb.co/dJbG1cT/yeezy.png",
-        price: 280
+        name: "Simply Nourish",
+        imageUrl: "https://i.ibb.co/wQgfMxc/2.jpg",
+        price: 48
       },
       {
         id: 12,
-        name: "Black Converse",
-        imageUrl: "https://i.ibb.co/bPmVXyP/black-converse.png",
-        price: 110
+        name: "Purina One",
+        imageUrl: "https://i.ibb.co/Q9PT5FN/3.jpg",
+        price: 35
       },
       {
         id: 13,
-        name: "Nike White AirForce",
-        imageUrl: "https://i.ibb.co/1RcFPk0/white-nike-high-tops.png",
-        price: 160
+        name: "Royal Canin",
+        imageUrl: "https://i.ibb.co/djvy3Kr/4.jpg",
+        price: 39
       },
       {
         id: 14,
@@ -122,27 +122,27 @@ const SHOP_DATA = [
     items: [
       {
         id: 18,
-        name: "Black Jean Shearling",
-        imageUrl: "https://i.ibb.co/XzcwL5s/black-shearling.png",
-        price: 125
+        name: "Meal Topper",
+        imageUrl: "https://i.ibb.co/Z6GWmhL/1.jpg",
+        price: 3
       },
       {
         id: 19,
-        name: "Blue Jean Jacket",
-        imageUrl: "https://i.ibb.co/mJS6vz0/blue-jean-jacket.png",
-        price: 90
+        name: "Mini Meals",
+        imageUrl: "https://i.ibb.co/Z898jWC/2.jpg",
+        price: 5
       },
       {
         id: 20,
-        name: "Grey Jean Jacket",
-        imageUrl: "https://i.ibb.co/N71k1ML/grey-jean-jacket.png",
-        price: 90
+        name: "Instinct Rawboost",
+        imageUrl: "https://i.ibb.co/WkVF9jW/3.jpg",
+        price: 12
       },
       {
         id: 21,
-        name: "Brown Shearling",
-        imageUrl: "https://i.ibb.co/s96FpdP/brown-shearling.png",
-        price: 165
+        name: "Simply Shreds",
+        imageUrl: "https://i.ibb.co/wpFcjqw/4.jpg",
+        price: 8
       },
       {
         id: 22,
@@ -159,27 +159,27 @@ const SHOP_DATA = [
     items: [
       {
         id: 23,
-        name: "Blue Tanktop",
-        imageUrl: "https://i.ibb.co/7CQVJNm/blue-tank.png",
-        price: 25
+        name: "Biscuits & Bakery",
+        imageUrl: "https://i.ibb.co/gtX9C4b/1.jpg",
+        price: 9
       },
       {
         id: 24,
-        name: "Floral Blouse",
-        imageUrl: "https://i.ibb.co/4W2DGKm/floral-blouse.png",
-        price: 20
+        name: "Bones & Rawhide",
+        imageUrl: "https://i.ibb.co/Wt14mD3/1.jpg",
+        price: 19
       },
       {
         id: 25,
-        name: "Floral Dress",
-        imageUrl: "https://i.ibb.co/KV18Ysr/floral-skirt.png",
-        price: 80
+        name: "Chewy Treats",
+        imageUrl: "https://i.ibb.co/pd7H863/2.jpg",
+        price: 12
       },
       {
         id: 26,
-        name: "Red Dots Dress",
-        imageUrl: "https://i.ibb.co/N3BN1bh/red-polka-dot-dress.png",
-        price: 80
+        name: "Jerky",
+        imageUrl: "https://i.ibb.co/LScrfYN/3.jpg",
+        price: 16
       },
       {
         id: 27,
@@ -208,27 +208,27 @@ const SHOP_DATA = [
     items: [
       {
         id: 30,
-        name: "Camo Down Vest",
-        imageUrl: "https://i.ibb.co/xJS0T3Y/camo-vest.png",
-        price: 325
+        name: "Beds & Furniture",
+        imageUrl: "https://i.ibb.co/z4hP9PD/1.jpg",
+        price: 50
       },
       {
         id: 31,
-        name: "Floral T-shirt",
-        imageUrl: "https://i.ibb.co/qMQ75QZ/floral-shirt.png",
-        price: 20
+        name: "Bowls & Feeders",
+        imageUrl: "https://i.ibb.co/QftGsK1/2.jpg",
+        price: 45
       },
       {
         id: 32,
-        name: "Black & White Longsleeve",
-        imageUrl: "https://i.ibb.co/55z32tw/long-sleeve.png",
-        price: 25
+        name: "Clothing & Shoes",
+        imageUrl: "https://i.ibb.co/zXsS75T/handsome-dog.jpg",
+        price: 15
       },
       {
         id: 33,
-        name: "Pink T-shirt",
-        imageUrl: "https://i.ibb.co/RvwnBL8/pink-shirt.png",
-        price: 25
+        name: "Collars & Leashes",
+        imageUrl: "https://i.ibb.co/DCCNNj6/4.jpg",
+        price: 28
       },
       {
         id: 34,
