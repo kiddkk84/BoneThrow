@@ -16,7 +16,7 @@ class Stocks extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://edwardpa.pythonanywhere.com/')
+        fetch('https://edwardpa.pythonanywhere.com/')
             .then((response) => {
                 return response.json();
             })
