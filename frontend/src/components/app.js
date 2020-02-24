@@ -19,7 +19,7 @@ import CreateProfile from "../components/create-profile/CreateProfile";
 import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
 import DogMapContainer from './map/map_container';
-
+import Stocks from './dogs/stocks';
 
 const App = () => (
     <div style={{position:`relative`}}>
@@ -36,6 +36,8 @@ const App = () => (
             <AuthRoute exact path="/register" component={SignupFormContainer} />
             <ProtectedRoute exact path="/dogs" component={DogsContainer} />
             <ProtectedRoute exact path="/adddog" component={CreateProfile} />
+            <ProtectedRoute exact path="/stocks" component={Stocks} />
+
             <Redirect to="/" /> 
         </Switch>
         <Footer/>
