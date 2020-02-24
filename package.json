@@ -25,6 +25,7 @@
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react-bootstrap": "^1.0.0-beta.16",
+    "reselect": "^4.0.0",
     "validator": "^12.1.0"
   },
   "devDependencies": {
