@@ -6,27 +6,27 @@ const SHOP_DATA = [
     items: [
       {
         id: 1,
-        name: "Brown Brim",
-        imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
-        price: 25
+        name: "Homestyle Recipe",
+        imageUrl: "https://i.ibb.co/426shKV/3.jpg",
+        price: 2
       },
       {
         id: 2,
-        name: "Blue Beanie",
-        imageUrl: "https://i.ibb.co/ypkgK0X/blue-beanie.png",
-        price: 18
+        name: "Chicken Barley",
+        imageUrl: "https://i.ibb.co/n8tW4rL/2.jpg",
+        price: 4
       },
       {
         id: 3,
-        name: "Brown Cowboy",
-        imageUrl: "https://i.ibb.co/QdJwgmp/brown-cowboy.png",
-        price: 35
+        name: "Nature's Recipe",
+        imageUrl: "https://i.ibb.co/2YKd3rp/4.jpg",
+        price: 5
       },
       {
         id: 4,
-        name: "Grey Brim",
-        imageUrl: "https://i.ibb.co/RjBLWxB/grey-brim.png",
-        price: 25
+        name: "Spinach Stew",
+        imageUrl: "https://i.ibb.co/9ZNXpGq/5.jpg",
+        price: 3
       },
       {
         id: 5,
