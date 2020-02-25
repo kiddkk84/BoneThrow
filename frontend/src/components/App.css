@@ -9,7 +9,7 @@ img {
 
 .landing {
   position: relative;
-  background: url("./img/dog.jpg") no-repeat;
+  background: url("../../../img/dog.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;

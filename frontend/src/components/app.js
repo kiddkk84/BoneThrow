@@ -22,6 +22,7 @@ import DogMapContainer from './map/map_container';
 import ShopPage from './shoppage/shoppage.component';
 import ShopAllPage from './shoppage/shop.component'
 import CheckoutPage from './checkout/checkout.compoment'
+import PostForm from '../components/posts/post_form'
 
 
 const App = () => (
@@ -30,6 +31,7 @@ const App = () => (
     {/* <HomePage /> */}
     {/* <Menu /> */}
     <Switch>
+      <Route exact path="/posts" component={PostForm} />
       <Route exact path="/checkout" component={CheckoutPage} />
       <Route exact path="/collection" component={ShopAllPage} />
       <Route exact path="/shop" component={ShopPage} />
@@ -43,6 +45,7 @@ const App = () => (
       <AuthRoute exact path="/register" component={SignupFormContainer} />
       <ProtectedRoute exact path="/dogs" component={DogsContainer} />
       <ProtectedRoute exact path="/adddog" component={CreateProfile} />
+
       <Redirect to="/" />
     </Switch>
     <Footer />
