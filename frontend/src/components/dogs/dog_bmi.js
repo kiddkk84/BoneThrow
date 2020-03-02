@@ -14,11 +14,11 @@ class DogBmi extends React.Component {
         this.state = {
             response: ''
         }
-        let myStorage = window.localStorage;
-        localStorage.setItem('myCat', 'Tom');
-        var cat = localStorage.getItem('myCat');
-        localStorage.removeItem('myCat');
-        localStorage.clear();
+        // let myStorage = window.localStorage;
+        // localStorage.setItem('myCat', 'Tom');
+        // var cat = localStorage.getItem('myCat');
+        // localStorage.removeItem('myCat');
+        // localStorage.clear();
 
         this.graphRuns = this.graphRuns.bind(this);
         this.showData = this.showData.bind(this)
@@ -140,7 +140,7 @@ class DogBmi extends React.Component {
             return null
         } else {
             let answer = JSON.parse(localStorage.answer);
-            console.log(answer)
+            // console.log(answer)
             return answer.map( (kvpair,index) => {
                 return <div>{index} {kvpair.height} {kvpair.weight}</div>
             })
