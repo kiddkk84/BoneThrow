@@ -9,7 +9,8 @@ class Stocks extends React.Component {
         super(props);
 
         this.state = {
-            response: ''
+            response: '',
+            loader: true
         }
 
         this.graphRuns=this.graphRuns.bind(this);
@@ -23,6 +24,7 @@ class Stocks extends React.Component {
             .then((myJson) => {
                 this.setState({
                     response: myJson,
+                    loader: false,
                 })
                 // console.log(this.state);
                 // console.log(this.state.response.PETS[`alpha`])
@@ -48,8 +50,8 @@ class Stocks extends React.Component {
         // chart colors
         var colors = ['#007bff', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
 
-
-        var value = this.state.response.PETS[`eleslow`];
+        try{
+        var value = this.state.response.PETS["basecase"];
         var json = JSON.parse("[" + value + "]");
 
         console.log(json);
@@ -121,7 +123,10 @@ class Stocks extends React.Component {
                 }
             }
         };
-
+    }
+    catch(error){
+        return (error.message)
+    }
 
     }
 
@@ -129,8 +134,12 @@ class Stocks extends React.Component {
         return(
             // <div style={{ width: `45%`, margin: `0 auto`}}>
             <div>
+                {this.state.loader === true ? 
+                <span>LOADING FROM OUR DJANGO API MICROSERVICE 
+                    https://edwardpa.pythonanywhere.com/
+                </span> : 
                     <canvas id="chLine" height="1000px" width="1500px"></canvas>  
-
+                }
             </div>
 
             );
