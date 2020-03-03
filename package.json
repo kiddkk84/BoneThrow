@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "canvasjs": "^1.8.3",
     "chart.js": "^2.9.3",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
@@ -24,6 +26,7 @@
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-canvas-js": "^1.0.1",
     "validator": "^12.1.0"
   },
   "devDependencies": {

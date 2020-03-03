@@ -2,7 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Chart from 'chart.js';
-
+import Spinner from "../common/Spinner";
+import MyPopover from './popover';
 
 class Stocks extends React.Component {
     constructor(props) {
@@ -149,30 +150,45 @@ class Stocks extends React.Component {
 
     }
 
+
+
     render() {
+    
+
+
         return(
             // <div style={{ width: `45%`, margin: `0 auto`}}>
             <div>
                 {this.state.loader === true ? 
-                <span>LOADING FROM OUR DJANGO API MICROSERVICE 
-                    https://edwardpa.pythonanywhere.com/
-                </span> : 
+                    <div style={{textAlign: `-webkit-center`}}>LOADING FROM OUR DJANGO API MICROSERVICE 
+                            https://edwardpa.pythonanywhere.com/
+                    <Spinner />
+                </div> : 
                     <div style={{ textAlign: `-webkit-center` }}>
                         <h1> A dog's lifestyle begins with his/her owner's financial security! Look into buying a dog-related SECURITY today!</h1>
                         <h2>Y axes are daily percentage returns and X axes are approximately a year of trading days with the largest number being closest to today</h2>
                         <h3><i>Fourier analysis for seasonality like 4 waves per 250 trading days to be added !</i></h3> 
+
                     <canvas id="1" height="500" width="1000px"></canvas>  
                         PETS alpha: {this.state.response.PETS[`alpha`]} PETS beta: {this.state.response.PETS[`beta`]} &nbsp;
                         PetMed Express, Inc., also known as 1-800-PetMeds, is an online pet pharmacy based in the United States.
+                    <MyPopover response={this.state.response.PETS}></MyPopover>
+
                     <canvas id="2" height="500px" width="1000px"></canvas>  
                         MRK alpha: {this.state.response.MRK[`alpha`]} MRK beta: {this.state.response.MRK[`beta`]} &nbsp;
                         Merck & Co., Inc., d.b.a. Merck Sharp & Dohme outside the United States and Canada, is an American multinational pharmaceutical company 
+                    <MyPopover response={this.state.response.MRK}></MyPopover>
+
                     <canvas id="3" height="500px" width="1000px"></canvas>  
                         CVS alpha: {this.state.response.CVS[`alpha`]} CVS beta: {this.state.response.CVS[`beta`]} &nbsp;
                         CVS Health is an American healthcare company
+                    <MyPopover response={this.state.response.CVS}></MyPopover>
+
                     <canvas id="4" height="500px" width="1000px"></canvas>  
                         TRUP alpha: {this.state.response.TRUP[`alpha`]} TRUP beta: {this.state.response.TRUP[`beta`]} &nbsp;
                         Trupanion is a pet insurance company!
+          
+                    <MyPopover response={this.state.response.TRUP}></MyPopover>
                         <br/>
                         <br/>
                         <br />
