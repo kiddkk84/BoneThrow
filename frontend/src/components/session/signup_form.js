@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ padding: `5% 25% 15% 25%`  }}>
                 {/* <Layout title="Signup"
                     description="Signup to Bone Throw"
                     className="container col-md-8 offset-md-2"> */}
@@ -130,7 +130,7 @@ class SignupForm extends React.Component {
                             />
                         </div>
 
-                    <div className="d-flex flex-nowrap justify-content-center">
+                    <div className="d-flex flex-nowrap justify-content-center" style={{ textAlign: `-webkit-center`}}>
                     <button className="btn btn-primary ">Submit</button>
                         {/* {this.renderErrors()} */}
                     {this.props.errors.length === 0 ? null :

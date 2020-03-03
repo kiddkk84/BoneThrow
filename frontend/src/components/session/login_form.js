@@ -76,9 +76,9 @@ class LoginForm extends React.Component {
     render() {
         return (
             
-            <div>
+            <div style={{ padding: `7% 25% 15% 25%` }}>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
+                    <div className="form-group">
                             <label className="text-muted">Email</label>
                             <input type="email"
                                 value={this.state.email}
@@ -98,11 +98,13 @@ class LoginForm extends React.Component {
                                 className="form-control"
                             />
                         </div>
-
+                    <div style={{ textAlign: `-webkit-center`}}>
                         <button className="btn btn-primary">Submit</button>
                         <button className="btn btn-primary" onClick={()=>this.demoFill()}>Demo Login</button>
+                        
 
                         {this.renderErrors()}
+                    </div>
                     </form>
                 {/* </Layout> */}
             </div>

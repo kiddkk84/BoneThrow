@@ -96,6 +96,10 @@ class Stocks extends React.Component {
                 type: 'line',
                 data: chartData,
                 options: {
+                    title: {
+                        display: true,
+                        text: ticker,
+                    },
                     scales: {
                         xAxes: [{
                             ticks: {
@@ -104,7 +108,7 @@ class Stocks extends React.Component {
                         }]
                     },
                     legend: {
-                        display: true
+                        display: false
                     },
                     responsive: true
                 }
@@ -127,7 +131,7 @@ class Stocks extends React.Component {
                         }
                     }
                 ],
-                yAxes: [{ display: 'true' }]
+                yAxes: [{ display: 'false' }]
             },
             layout: {
                 padding: {
@@ -153,11 +157,28 @@ class Stocks extends React.Component {
                 <span>LOADING FROM OUR DJANGO API MICROSERVICE 
                     https://edwardpa.pythonanywhere.com/
                 </span> : 
-                <div>
+                    <div style={{ textAlign: `-webkit-center` }}>
+                        <h1> A dog's lifestyle begins with his/her owner's financial security! Look into buying a dog-related SECURITY today!</h1>
+                        <h2>Y axes are daily percentage returns and X axes are approximately a year of trading days with the largest number being closest to today</h2>
+                        <h3><i>Fourier analysis for seasonality like 4 waves per 250 trading days to be added !</i></h3> 
                     <canvas id="1" height="500" width="1000px"></canvas>  
+                        PETS alpha: {this.state.response.PETS[`alpha`]} PETS beta: {this.state.response.PETS[`beta`]} &nbsp;
+                        PetMed Express, Inc., also known as 1-800-PetMeds, is an online pet pharmacy based in the United States.
                     <canvas id="2" height="500px" width="1000px"></canvas>  
+                        MRK alpha: {this.state.response.MRK[`alpha`]} MRK beta: {this.state.response.MRK[`beta`]} &nbsp;
+                        Merck & Co., Inc., d.b.a. Merck Sharp & Dohme outside the United States and Canada, is an American multinational pharmaceutical company 
                     <canvas id="3" height="500px" width="1000px"></canvas>  
+                        CVS alpha: {this.state.response.CVS[`alpha`]} CVS beta: {this.state.response.CVS[`beta`]} &nbsp;
+                        CVS Health is an American healthcare company
                     <canvas id="4" height="500px" width="1000px"></canvas>  
+                        TRUP alpha: {this.state.response.TRUP[`alpha`]} TRUP beta: {this.state.response.TRUP[`beta`]} &nbsp;
+                        Trupanion is a pet insurance company!
+                        <br/>
+                        <br/>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </div>
                 }
             </div>
