@@ -7,6 +7,7 @@ class DogBmi extends React.Component {
         this.state = {
             response: '',
             storagelol: localStorage,
+            error: ``,
         }
         this.showData = this.showData.bind(this)
     }
@@ -31,7 +32,7 @@ class DogBmi extends React.Component {
                         <h4> 
                             We value your privacy so none of your *SENSITIVE* dog's reported weights are ever sent to us.
                             They are stored in your browser's memory specific to the protocol of this page. 
-                            Indeed, this page will work and save your data even if you have no internet connection.
+                            Indeed, this page will work and save your data even if you have no internet connection, and the data will persist beyond logout and/or closing the browser.
                             Localstorage technology is great for when security isn't super important but knowing that the otherwise secure
                             DB of the website owner can't sell your privacy off to advertisers is !
                             (https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
@@ -61,14 +62,18 @@ class DogBmi extends React.Component {
                     border: `2px solid black`
                 }}><td style={{
                     border: `2px solid black`
-                    }}>{index + 1 + "."}</td><td style={{
+                    }}>{index + 1 + "."}</td>
+                    <td style={{
+                        border: `2px solid black`
+                    }}>{kvpair.date}</td><td style={{
                         border: `2px solid black`
                     }}>{kvpair.height + " inches"}</td> <td style={{
                         border: `2px solid black`
                     }}>{kvpair.weight + " lbs"}</td>
                     <td style={{
                         border: `2px solid black`
-                    }}>{trunc(kvpair.weight/kvpair.height, 4) + " WTH ratio"}</td></tr>
+                    }}>{trunc(kvpair.weight/kvpair.height, 4) + " WTH ratio"}</td>
+                    </tr>
             })
         }
     }
@@ -103,9 +108,17 @@ class DogBmi extends React.Component {
                         }
                         const weight = document.getElementById("weight").value
                         const height = document.querySelector("#height").value
+                        if (isNaN(weight) === true || isNaN(height) === true){
+                            this.setState({
+                                error: "put in valid numbers"
+                            })
+                            return false
+                        }
+
                         let newData = {
                             "weight": weight,
                             "height":height,
+                            "date": new Date().toString(),
                         }
                         answer.push(newData)
                         localStorage.answer = JSON.stringify(answer);
@@ -139,7 +152,11 @@ class DogBmi extends React.Component {
                             border: `2px solid black`}}>
                             <tr style={{
                                 border: `2px solid black`
-                            }}><th> </th><th style={{
+                            }}><th> </th>
+                                    <th style={{
+                                        border: `2px solid black`
+                                    }} >Date</th>
+                                    <th style={{
                                     border: `2px solid black`}} >Height</th><th style={{
                                     border: `2px solid black`
                                 }}>Weight</th><th style={{
@@ -148,6 +165,7 @@ class DogBmi extends React.Component {
                             </table>}
                     </div>
                     <br/><br/>
+                    {this.state.error}
                     <button onClick={() => {localStorage.clear(); this.setState({storagelol: null}) }}>Delete current localstorage </button> 
 
                     

@@ -14,7 +14,10 @@ class Stocks extends React.Component {
         }
 
         this.graphRuns=this.graphRuns.bind(this);
+        this.counter = 1
+
     }
+
 
     componentDidMount(){
         fetch('https://edwardpa.pythonanywhere.com/')
@@ -29,7 +32,12 @@ class Stocks extends React.Component {
                 // console.log(this.state);
                 // console.log(this.state.response.PETS[`alpha`])
                 // console.log(this.state.response.PETS[`eleslow`])
-                this.graphRuns();
+                for(let key in this.state.response){
+                    // console.log(this.state.response[key]["basecase"])
+                    this.graphRuns(key)
+                    
+                }
+                // this.graphRuns();
             });
     }
 
@@ -42,7 +50,7 @@ class Stocks extends React.Component {
     //     this.forceUpdate()
     // }
 
-    graphRuns(){
+    graphRuns(ticker){
         /* chart.js chart examples 
         https://www.codeply.com/go/3l6UhaQEhq/bootstrap-4-chartjs
         */
@@ -51,15 +59,22 @@ class Stocks extends React.Component {
         var colors = ['#007bff', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
 
         try{
-        var value = this.state.response.PETS["basecase"];
+        var value = this.state.response[ticker]["basecase"];
         var json = JSON.parse("[" + value + "]");
 
-        console.log(json);
+        // console.log(json);
 
         /* large line chart */
         let number = json[0].length;
-        console.log(number)
-        var chLine = document.getElementById("chLine");
+        // console.log(number)
+        var chLine = document.getElementById(this.counter);
+        this.counter+=1
+        
+            // var chLine = document.createElement('canvas');
+            // chLine.id = 'someId';
+
+            // document.body.appendChild(chLine); // adds the canvas to the body element
+
         var chartData = {
             // labels: ["S", "M", "T", "W", "T", "F", "S"],
             labels: Array.apply(null, Array(number)).map(function (_, i) { return i; }),
@@ -138,7 +153,12 @@ class Stocks extends React.Component {
                 <span>LOADING FROM OUR DJANGO API MICROSERVICE 
                     https://edwardpa.pythonanywhere.com/
                 </span> : 
-                    <canvas id="chLine" height="1000px" width="1500px"></canvas>  
+                <div>
+                    <canvas id="1" height="500" width="1000px"></canvas>  
+                    <canvas id="2" height="500px" width="1000px"></canvas>  
+                    <canvas id="3" height="500px" width="1000px"></canvas>  
+                    <canvas id="4" height="500px" width="1000px"></canvas>  
+                    </div>
                 }
             </div>
 
