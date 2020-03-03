@@ -172,23 +172,23 @@ class Stocks extends React.Component {
                     <canvas id="1" height="500" width="1000px"></canvas>  
                         PETS alpha: {this.state.response.PETS[`alpha`]} PETS beta: {this.state.response.PETS[`beta`]} &nbsp;
                         PetMed Express, Inc., also known as 1-800-PetMeds, is an online pet pharmacy based in the United States.
-                    <MyPopover response={this.state.response.PETS}></MyPopover>
+                    <MyPopover name="PETS" response={this.state.response.PETS}></MyPopover>
 
                     <canvas id="2" height="500px" width="1000px"></canvas>  
                         MRK alpha: {this.state.response.MRK[`alpha`]} MRK beta: {this.state.response.MRK[`beta`]} &nbsp;
                         Merck & Co., Inc., d.b.a. Merck Sharp & Dohme outside the United States and Canada, is an American multinational pharmaceutical company 
-                    <MyPopover response={this.state.response.MRK}></MyPopover>
+                    <MyPopover name="MRK" response={this.state.response.MRK}></MyPopover>
 
                     <canvas id="3" height="500px" width="1000px"></canvas>  
                         CVS alpha: {this.state.response.CVS[`alpha`]} CVS beta: {this.state.response.CVS[`beta`]} &nbsp;
                         CVS Health is an American healthcare company
-                    <MyPopover response={this.state.response.CVS}></MyPopover>
+                    <MyPopover name="CVS" response={this.state.response.CVS}></MyPopover>
 
                     <canvas id="4" height="500px" width="1000px"></canvas>  
                         TRUP alpha: {this.state.response.TRUP[`alpha`]} TRUP beta: {this.state.response.TRUP[`beta`]} &nbsp;
                         Trupanion is a pet insurance company!
           
-                    <MyPopover response={this.state.response.TRUP}></MyPopover>
+                    <MyPopover name="TRUP" response={this.state.response.TRUP}></MyPopover>
                         <br/>
                         <br/>
                         <br />
