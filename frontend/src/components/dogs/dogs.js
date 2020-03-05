@@ -99,7 +99,12 @@ class Dogs extends React.Component {
             bottom: `0px`, 
             left: `0px`,
             zIndex: `-1`,
-            filter: `grayscale(100%)`,
+            filter: `grayscale(20%) brightness(200%) contrast(40%)`,
+            // width:`2000px`,
+            // height: `1000px`,
+            // backgroundSize: `1000px 1000px`,
+            backgroundPosition: `center`,
+    
             // filter: 'brightness(2)'
         }
 

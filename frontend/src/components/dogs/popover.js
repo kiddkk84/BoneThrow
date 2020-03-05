@@ -209,7 +209,7 @@ export default function SimplePopover(props) {
     return (
         <div>
             <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                I want to see graphs with waves!
+                More details on {props.name} 
       </Button>
             <Popover
                 id={id}

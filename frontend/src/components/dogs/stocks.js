@@ -83,13 +83,18 @@ class Stocks extends React.Component {
                 // data: [589, 445, 483, 503, 689, 692, 634],
                 // data: this.state.response.PETS[`eleslow`],
                 data: json[0],
-                backgroundColor: 'transparent',
-                // borderColor: colors[0],
-                borderColor: 'transparent',
-                borderWidth: 0,
-                pointBackgroundColor: colors[0]
-            
-              
+                // backgroundColor: 'transparent',
+                // // borderColor: colors[0],
+                // borderColor: 'transparent',
+                // borderWidth: 0,
+                // pointBackgroundColor: colors[0]
+                borderWidth: 1,
+                borderColor: '#922893',
+                pointBorderColor: '#922893',
+                pointBackgroundColor: "transparent",
+                bezierCurve: false,
+                lineTension: 0,
+
             }]
         };
         if (chLine) {
@@ -100,13 +105,35 @@ class Stocks extends React.Component {
                     title: {
                         display: true,
                         text: ticker,
+                        fontSize: 30,
                     },
                     scales: {
                         xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'trading days',
+                                fontSize: 20
+
+                            },
                             ticks: {
-                                beginAtZero: false
+                                beginAtZero: false,
+                                fontSize:20
                             }
-                        }]
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'day-on-day change in %stock price',
+                                fontSize: 20
+
+                            },
+                            ticks: {
+                                beginAtZero: false,
+                                fontSize: 20
+
+                            }
+                        }],
+                    
                     },
                     legend: {
                         display: false
@@ -119,7 +146,7 @@ class Stocks extends React.Component {
         /* 3 line charts */
         var lineOptions = {
             legend: { display: false },
-            tooltips: { interest: false, bodyFontSize: 11, titleFontSize: 11 },
+            tooltips: { interest: false, bodyFontSize: 11, titleFontSize: 30 },
             scales: {
                 xAxes: [
                     {
@@ -129,7 +156,8 @@ class Stocks extends React.Component {
                         gridLines: {
                             display: false,
                             drawBorder: false
-                        }
+                        },
+                 
                     }
                 ],
                 yAxes: [{ display: 'false' }]
@@ -165,30 +193,48 @@ class Stocks extends React.Component {
                     <Spinner />
                 </div> : 
                     <div style={{ textAlign: `-webkit-center` }}>
-                        <h1> A dog's lifestyle begins with his/her owner's financial security! Look into buying a dog-related SECURITY today!</h1>
+                        {/* <h1> A dog's lifestyle begins with his/her owner's financial security! Look into buying a dog-related SECURITY today!</h1>
                         <h2>Y axes are daily percentage returns and X axes are approximately a year of trading days with the largest number being closest to today</h2>
-                        <h3><i>Fourier analysis for seasonality like 4 waves per 250 trading days to be added !</i></h3> 
-
+                        <h3><i>Fourier analysis for seasonality like 4 waves per 250 trading days to be added !</i></h3>  */}
+                        
+                        
+                      
                     <canvas id="1" height="500" width="1000px"></canvas>  
-                        PETS alpha: {this.state.response.PETS[`alpha`]} PETS beta: {this.state.response.PETS[`beta`]} &nbsp;
                         PetMed Express, Inc., also known as 1-800-PetMeds, is an online pet pharmacy based in the United States.
-                    <MyPopover name="PETS" response={this.state.response.PETS}></MyPopover>
+                        <div style={{display:`flexbox`, marginBottom:`60px`}}>
+                            PETS alpha: {this.state.response.PETS[`alpha`]} / PETS beta: {this.state.response.PETS[`beta`]}
+                            <MyPopover name="PETS" response={this.state.response.PETS}></MyPopover>
+                        </div>
+                     
+                        <hr></hr>
 
                     <canvas id="2" height="500px" width="1000px"></canvas>  
-                        MRK alpha: {this.state.response.MRK[`alpha`]} MRK beta: {this.state.response.MRK[`beta`]} &nbsp;
-                        Merck & Co., Inc., d.b.a. Merck Sharp & Dohme outside the United States and Canada, is an American multinational pharmaceutical company 
-                    <MyPopover name="MRK" response={this.state.response.MRK}></MyPopover>
+                        Merck & Co., Inc., d.b.a. Merck Sharp & Dohme outside the United States and Canada, is an American multinational pharmaceutical company.
+                        <div style={{ display: `flexbox`, marginBottom: `60px` }}>
+
+                                 MRK alpha: {this.state.response.MRK[`alpha`]} / MRK beta: {this.state.response.MRK[`beta`]} 
+                        <MyPopover name="MRK" response={this.state.response.MRK}></MyPopover>
+                        </div>
+                        <hr></hr>
+
 
                     <canvas id="3" height="500px" width="1000px"></canvas>  
-                        CVS alpha: {this.state.response.CVS[`alpha`]} CVS beta: {this.state.response.CVS[`beta`]} &nbsp;
-                        CVS Health is an American healthcare company
-                    <MyPopover name="CVS" response={this.state.response.CVS}></MyPopover>
+                        CVS Health is an American healthcare company.
+                                            <div style={{ display: `flexbox`, marginBottom: `60px` }}>
+
+                        CVS alpha: {this.state.response.CVS[`alpha`]} / CVS beta: {this.state.response.CVS[`beta`]} 
+                         <MyPopover name="CVS" response={this.state.response.CVS}></MyPopover>
+                    </div>
+                        <hr></hr>
 
                     <canvas id="4" height="500px" width="1000px"></canvas>  
-                        TRUP alpha: {this.state.response.TRUP[`alpha`]} TRUP beta: {this.state.response.TRUP[`beta`]} &nbsp;
-                        Trupanion is a pet insurance company!
-          
-                    <MyPopover name="TRUP" response={this.state.response.TRUP}></MyPopover>
+                        Trupanion is a pet insurance company.
+                                            <div style={{ display: `flexbox` }}>
+
+                        TRUP alpha: {this.state.response.TRUP[`alpha`]} / TRUP beta: {this.state.response.TRUP[`beta`]} 
+                        <MyPopover name="TRUP" response={this.state.response.TRUP}></MyPopover>
+                    </div>
+
                         <br/>
                         <br/>
                         <br />
