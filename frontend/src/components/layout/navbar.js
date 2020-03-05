@@ -113,21 +113,32 @@ class NavBar extends React.Component {
                       Post Feed
                     </Link>
                   </li>
-                  {/* <li className="nav-item">
+                  <li className="nav-item">
                     <Link className="nav-link" to="/adddog">
                       Add a dog
                     </Link>
-                  </li> */}
-                  {/* <li className="nav-item">
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" to="/dogs">
                       Dog Profile
                     </Link>
-                  </li> */}
+                  </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/collection">
                       Collection
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/stocks">
+                      Dog Stocks
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/bmi">
+                      Dog BMI Calculator
+                    </Link>
+                  </li>
+
                 </ul>
 
                 <ul className="navbar-nav ml-auto">

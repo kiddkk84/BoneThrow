@@ -19,15 +19,22 @@ import CreateProfile from "../components/create-profile/CreateProfile";
 import Posts from "../components/posts/Posts";
 import DogShowContainer from './dogs/dog_show_container';
 import DogMapContainer from './map/map_container';
-<<<<<<< HEAD
 import Stocks from './dogs/stocks';
 import DogBmi from './dogs/dog_bmi'
+import ShopPage from './shoppage/shoppage.component';
+import ShopAllPage from './shoppage/shop.component'
+import CheckoutPage from './checkout/checkout.compoment'
+import PostForm from '../components/posts/post_form'
 
 const App = () => (
     <div style={{position:`relative`}}>
         <NavBarContainer />
         {/* <Menu /> */}
         <Switch>
+      <Route exact path="/posts" component={PostForm} />
+      <Route exact path="/checkout" component={CheckoutPage} />
+      <Route exact path="/collection" component={ShopAllPage} />
+      <Route exact path="/shop" component={ShopPage} />
             <ProtectedRoute path="/dog/:dogId" component={DogShowContainer} />
             <Route exact path="/" component={Landing} />
             <ProtectedRoute exact path="/dogmap" component={DogMapContainer} />
@@ -47,39 +54,7 @@ const App = () => (
 
 
     </div>
-=======
-import ShopPage from './shoppage/shoppage.component';
-import ShopAllPage from './shoppage/shop.component'
-import CheckoutPage from './checkout/checkout.compoment'
-import PostForm from '../components/posts/post_form'
 
-
-const App = () => (
-  <div style={{ position: `relative` }}>
-    <NavBarContainer />
-    {/* <HomePage /> */}
-    {/* <Menu /> */}
-    <Switch>
-      <Route exact path="/posts" component={PostForm} />
-      <Route exact path="/checkout" component={CheckoutPage} />
-      <Route exact path="/collection" component={ShopAllPage} />
-      <Route exact path="/shop" component={ShopPage} />
-      <ProtectedRoute path="/dog/:dogId" component={DogShowContainer} />
-      <Route exact path="/" component={Landing} />
-      <ProtectedRoute exact path="/dogmap" component={DogMapContainer} />
-      <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-      <PrivateRoute exact path="/feed" component={Posts} />
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/register" component={SignupFormContainer} />
-      <ProtectedRoute exact path="/dogs" component={DogsContainer} />
-      <ProtectedRoute exact path="/adddog" component={CreateProfile} />
-
-      <Redirect to="/" />
-    </Switch>
-    <Footer />
-  </div>
->>>>>>> project-a/master
 );
 
 export default App;
