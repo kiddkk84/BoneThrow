@@ -125,7 +125,7 @@ class NavBar extends React.Component {
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/collection">
-                      Collection
+                      Buy Dog Products
                     </Link>
                   </li>
                   <li className="nav-item">

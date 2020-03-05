@@ -29,7 +29,7 @@ class DogBmi extends React.Component {
                 <div>
                     {localStorage.length===0 || localStorage.answer === undefined ? 
                    <div> <h2> You have not reported any weights! Report your dog's weights anonymously above! </h2>
-                        <h4 style={{padding:`5px 20% 5px 20%`}}> 
+                        {/* <h4 style={{padding:`5px 20% 5px 20%`}}> 
                             We value your privacy so none of your *SENSITIVE* dog's reported weights are ever sent to us.
                             They are stored in your browser's memory specific to the protocol of this page. 
                             Indeed, this page will work and save your data even if you have no internet connection, and the data will persist beyond logout and/or closing the browser.
@@ -40,7 +40,7 @@ class DogBmi extends React.Component {
                             <h5 style={{ padding: `5px 10% 5px 10%`, border: `1px solid black` , margin: `5px 20% 5px 20%` }}>
                             RE doggy BMI: According to Zink and Van Dyke in Canine Sports and Rehabilitation, a ratio of 2.5 or higher implies that the dog should be trained on softer, forgiving, and non-slip surfaces so as to minimize the joint stress and reduce injury risk.  Dogs with a WTH of over 4 are at greater risk for injury and need a carefully structured training program.
                             (http://slimdoggy.com/calculating-a-dogs-body-mass-index/)
-                        </h5>
+                        </h5> */}
                     </div>
                     : null}
                 </div>)
