@@ -1,5 +1,9 @@
 body {
   margin-bottom: 100px !important;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> project-a/master
 }
 
 img {
@@ -8,7 +12,11 @@ img {
 
 .landing {
   position: relative;
+<<<<<<< HEAD
   background: url("./img/dog.jpg") no-repeat;
+=======
+  background: url("../../../img/dog.jpg") no-repeat;
+>>>>>>> project-a/master
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -49,9 +57,12 @@ img {
   width: 100%;
   color: yellow;
 }
+<<<<<<< HEAD
 
 #shadowme{
 -webkit-box-shadow: -3px 5px 34px 3px rgba(0,0,0,0.75);
 -moz-box-shadow: -3px 5px 34px 3px rgba(0,0,0,0.75);
 box-shadow: -3px 5px 34px 3px rgba(0,0,0,0.75);
 }
+=======
+>>>>>>> project-a/master

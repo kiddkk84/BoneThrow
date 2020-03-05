@@ -20,15 +20,15 @@ export default function SimplePopover(props) {
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
-        setTimeout( async()=>{
+        setTimeout( ()=>{
             graphStuff(props.response.halfeleslow, "half", "2 waves/year bi-annual seasonality")
             graphStuff(props.response.quarterlyeleslow, "quarterly", '4 waves/year quarter seasonality')
             graphStuff(props.response.perfectioneleslow, "monthly", '12 waves/year monthly seasonality')
             graphStuff(props.response.weeklyeleslow, "weekly", '52 waves/year weekly seasonality')
-            await graphRuns(props.response.halfcorrelation)
-            await graphRuns(props.response.quarterlycorrelation)
-            await graphRuns(props.response.perfectioncorrelation)
-            await graphRuns(props.response.weeklycorrelation)
+             graphRuns(props.response.halfcorrelation)
+             graphRuns(props.response.quarterlycorrelation)
+             graphRuns(props.response.perfectioncorrelation)
+             graphRuns(props.response.weeklycorrelation)
         }, 1000)
     };
 

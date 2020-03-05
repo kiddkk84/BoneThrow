@@ -51,6 +51,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentProfile } from "../../actions/profile_actions";
+import CartIcon from "../cart/cart-icon.component"
+import CartDropdown from '../cart/cart-dropdown.component'
 // import './navbar.css'
 
 class NavBar extends React.Component {
@@ -87,43 +89,43 @@ class NavBar extends React.Component {
 
               <div className="collapse navbar-collapse" id="mobile-nav">
                 <ul className="navbar-nav mr-auto">
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/profiles">
                       {" "}
                       Profile
+                    </Link>
+                  </li> */}
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/dogs">
+                      Dog Profile
                     </Link>
                   </li>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link className="nav-link" to="/feed">
-                      Post Feed
-                    </Link>
-                  </li>
-                  <li className="nav-item">
                     <Link className="nav-link" to="/dashboard">
                       Dashboard
                     </Link>
                   </li>
                   <li className="nav-item">
+                    <Link className="nav-link" to="/feed">
+                      Post Feed
+                    </Link>
+                  </li>
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/adddog">
                       Add a dog
                     </Link>
-                  </li>
-                  <li className="nav-item">
+                  </li> */}
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/dogs">
                       Dog Profile
                     </Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/stocks">
-                      Dog Stocks
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/bmi">
-                      Dog BMI Calculator
+                    <Link className="nav-link" to="/collection">
+                      Collection
                     </Link>
                   </li>
                 </ul>
@@ -133,7 +135,10 @@ class NavBar extends React.Component {
                     <button onClick={this.logoutUser}>Logout</button>
                   </li>
                 </ul>
+                <CartIcon />
               </div>
+              {this.props.hidden ? null : <CartDropdown />}
+              {/* <CartDropdown /> */}
             </div>
           </nav>
         </div>
@@ -157,12 +162,18 @@ class NavBar extends React.Component {
 
               <div className="collapse navbar-collapse" id="mobile-nav">
                 <ul className="navbar-nav mr-auto">
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/profiles">
                       {" "}
                       Profile
                     </Link>
+                  </li> */}
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/shop">
+                      Shop
+                    </Link>
                   </li>
+                  
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
