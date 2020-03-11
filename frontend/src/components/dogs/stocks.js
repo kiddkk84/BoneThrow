@@ -187,14 +187,28 @@ class Stocks extends React.Component {
         return(
             // <div style={{ width: `45%`, margin: `0 auto`}}>
             <div>
+
+          
+
+
                 {this.state.loader === true ? 
                     <div style={{textAlign: `-webkit-center`}}>LOADING FROM OUR DJANGO API MICROSERVICE 
                             https://edwardpa.pythonanywhere.com/
                     <Spinner />
                 </div> : 
-                    <div style={{ textAlign: `-webkit-center` }}>
-                        {/* <h1> A dog's lifestyle begins with his/her owner's financial security! Look into buying a dog-related SECURITY today!</h1>
-                        <h2>Y axes are daily percentage returns and X axes are approximately a year of trading days with the largest number being closest to today</h2>
+                    <div style={{ textAlign: `-webkit-center`, margin: `20px 50px 0 50px` }}>
+
+                    <video poster="http://easyhtml5video.com/images/happyfit2.jpg" autoplay="autoplay" autoPlay muted loop style={{ position: 'fixed', left: `0`, top: `0`, width: 'auto', height: `100%`, zIndex: `-1`, overflow: `hidden`
+                ,opacity: `.2` }}>
+                            <source src="700_F_326547518_NNx1Ieh551UYtmJCOZGrWD68xswVH1qU_ST.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                </video>
+
+
+
+
+                        <h1 style={{width:`75%`}}> A dog's lifestyle begins with his/her owner's financial security! </h1>
+                        {/* <h2>Y axes are daily percentage returns and X axes are approximately a year of trading days with the largest number being closest to today</h2>
                         <h3><i>Fourier analysis for seasonality like 4 waves per 250 trading days to be added !</i></h3>  */}
                         
                         

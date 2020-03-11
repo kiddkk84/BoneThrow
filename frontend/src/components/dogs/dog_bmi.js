@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import * as $ from 'jquery';
+
 
 class DogBmi extends React.Component {
     constructor(props) {
@@ -10,9 +12,14 @@ class DogBmi extends React.Component {
             error: ``,
         }
         this.showData = this.showData.bind(this)
+        this.maximizevideos = this.maximizevideos.bind(this)
+        this.scrollbarVisible = this.scrollbarVisible.bind(this)
+
     }
 
     componentDidMount() {
+        $("#scrollbardisaster").addClass("fixed-bottom");
+
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -24,11 +31,15 @@ class DogBmi extends React.Component {
     componentWillReceiveProps(newState) {
     }
     
+    componentWillUnmount(){
+        $("#scrollbardisaster").addClass("fixed-bottom");
+    }
+    
     youAreNew(){
             return (
                 <div>
                     {localStorage.length===0 || localStorage.answer === undefined ? 
-                   <div> <h2> You have not reported any weights! Report your dog's weights anonymously above! </h2>
+                        <div> <i><h2> You have not reported any weights! Report your dog's weights anonymously above! </h2></i>
                         {/* <h4 style={{padding:`5px 20% 5px 20%`}}> 
                             We value your privacy so none of your *SENSITIVE* dog's reported weights are ever sent to us.
                             They are stored in your browser's memory specific to the protocol of this page. 
@@ -78,13 +89,76 @@ class DogBmi extends React.Component {
         }
     }
 
+    maximizevideos(){
+        var $video = $('video'),
+            $window = $(window);
+
+        $(window).resize(function () {
+            var height = $window.height();
+            $video.css('height', height);
+
+            var videoWidth = $video.width(),
+                windowWidth = $window.width(),
+                marginLeftAdjust = (windowWidth - videoWidth) / 2;
+
+            $video.css({
+                'height': height,
+                'marginLeft': marginLeftAdjust
+            });
+        }).resize();
+    }
+
+
+    scrollbarVisible(){
+        //     $(function() {
+        //         alert('content 1: ' + $('body').hasScrollBar());
+        //     });
+
+        // (function ($) {
+        //     $.fn.hasScrollBar = function () {
+        //         return this.get(0).scrollHeight > this.height();
+        //     }
+        // })($);
+        if ((window.innerWidth - document.documentElement.clientWidth) > 0) {
+            //console.log('V-scrollbar active')
+            $("#scrollbardisaster").removeClass("fixed-bottom");
+        }
+        else {
+            //console.log('V-scrollbar active')
+            $("#scrollbardisaster").addClass("fixed-bottom");
+        }
+        clearInterval(this.CLEARTHISINTERVALPLEASE)
+
+    }
+
     render() {
         return (
-            <div style={{ textAlign: `-webkit-center`}}>
-                <h1 className="">DOG BMI CALCULATOR ft. localStorage
+            <div style={{ textAlign: `-webkit-center`, backgroundColor: ``}}>
+             
 
+                <span hidden style={{}}>{this.CLEARTHISINTERVALPLEASE = setInterval( this.scrollbarVisible, 5000)}</span>
+
+                {/* {this.scrollbarVisible()} */}
+                <video poster="http://easyhtml5video.com/images/happyfit2.jpg" autoplay="autoplay" autoPlay muted loop style={{position:'fixed', left: `0`, top: `0`, width: 'auto', height:`100%`, zIndex: `-1`,overflow:`hidden`}}>
+                    <source src="dogwoman.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                </video>
+
+                <div style={{
+                    color: `black`, opacity: `.74`, width: `50%`, height: `100%`, zIndex: `-1`, backgroundColor: `lightblue`, background:
+                        `linear - gradient(
+                            to bottom,
+                            rgba(69, 74, 99, 0.6),
+                            rgba(69, 74, 99, 0.8),
+                            rgba(69, 74, 99, 0.6)
+                        )`,
+                    boxShadow: `-1px -1px 0px 0px rgba(69, 74, 99,0.3)` ,
+                    backdropFilter: `blur(15px)`,
+                    padding: `20px`
+                }}>
+                    <h1 className="">DOG BMI CALCULATOR ft. localStorage
+    
                 </h1>
-
                 <fieldset style={{
                         display: `block`,
                         marginLeft: `2px`,
@@ -126,6 +200,7 @@ class DogBmi extends React.Component {
                         this.setState(
                             {
                                 storagelol: localStorage,
+                                error: ""
                             }
                         )
                         return true;          
@@ -146,7 +221,7 @@ class DogBmi extends React.Component {
                     border: `2px groove (internal value)`
                 }}>
                     <legend>Stored Weights</legend>
-                    <div class="output">{this.youAreNew()}
+                    <div className="output">{this.youAreNew()}
                         {localStorage.answer === undefined ? null : 
                             <table style={{
                             border: `2px solid black`}}>
@@ -165,11 +240,12 @@ class DogBmi extends React.Component {
                             </table>}
                     </div>
                     <br/><br/>
-                    {this.state.error}
-                    <button onClick={() => {localStorage.clear(); this.setState({storagelol: null}) }}>Delete current localstorage </button> 
-
+                    <button onClick={() => {localStorage.clear(); this.setState({storagelol: null}); this.scrollbarVisible(); this.setState({error: ""})}}>Delete current localstorage </button> 
+                        <br></br> <span> {this.state.error}</span>
+                            <br></br>    <br></br>    <br></br>    
                     
                 </fieldset>
+                </div>
             </div>
 
         );
