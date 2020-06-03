@@ -233,7 +233,7 @@ export default function SimplePopover(props) {
                         trading day before it, using only the best 2, 4, 12, 52 waves to guess!
                         <br/>
                         <i>Yes, this is using past data to predict past data; it's a thought experiment ONLY. Do not invest based on wave patterns!</i>
-                        <a href="http://www.join.robinhood.com/edwardz92" target="_blank"> &nbsp;Join robinhood (referral link)</a>
+                       &nbsp; <a href="https://join.robinhood.com/edwardz92" target="_blank"> Join robinhood (referral link)</a>
                     </div>
                     <canvas id="half" height="500px" width="1000px"></canvas>  
                     Correct guesses based off 2-wave pattern: {props.response.halfcounter} &nbsp;
