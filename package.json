@@ -30,7 +30,7 @@
     "react-canvas-js": "^1.0.1",
     "react-stripe-checkout": "^2.6.3",
     "reselect": "^4.0.0",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
